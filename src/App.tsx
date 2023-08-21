@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 
 import "./App.css";
-import { BoardGrid } from "./functions";
+import { BoardGrid } from "./board-grid";
 
 function App() {
   return (
