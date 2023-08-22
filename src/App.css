@@ -7,6 +7,16 @@
   pointer-events: none;
 }
 
+h1 {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 750;
+  font-size: 100px;
+  letter-spacing: 15px;
+  line-height: 100px;
+  -webkit-text-stroke: 1px #707070;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -14,7 +24,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
