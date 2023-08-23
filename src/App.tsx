@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "./logo.svg";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Container } from "@mui/material";
 import "./App.css";
