@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-
 import { useNewGame } from "../game-socket";
 import { useNavigate } from "react-router-dom";
 
