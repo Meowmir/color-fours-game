@@ -1,8 +1,13 @@
 import React from "react";
 import logo from "./logo.svg";
+import { Button } from "@mui/material";
+import { Route, BrowserRouter, Routes, useNavigate } from "react-router-dom";
+
+import NewGame from "./pages/new-game";
+import { gameSocket, SocketContext } from "./game-socket";
+
 import Container from "@mui/material/Grid";
 
-import "./App.css";
 import { GameTitle } from "./game-title";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Container } from "@mui/material";
@@ -16,7 +21,13 @@ import { BoardGrid } from "./board-grid";
 
 function App() {
   return (
+    <SocketContext.Provider value={gameSocket}>
+      <BrowserRouter>
     <div className="App">
+      <Routes>
+            <Route index element={<Splash />} />
+            <Route path="/new-game" element={<NewGame />} />
+          </Routes>
       <Container>
         <Grid container spacing={0}>
           <Grid xs={3}>
@@ -51,7 +62,21 @@ function App() {
         <BoardGrid></BoardGrid>
       </header>
     </div>
+      </BrowserRouter>
+    </SocketContext.Provider>
   );
 }
+        
+        function Splash() {
+  const navigate = useNavigate();
+
+  return (
+    <header className="App-header">
+      <img src={logo} className="App-logo" alt="logo" />
+      <Button onClick={() => navigate("/new-game")} variant="contained">
+        ?
+      </Button>
+    </header>
+    )}
 
 export default App;
