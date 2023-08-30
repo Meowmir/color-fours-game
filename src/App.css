@@ -7,14 +7,31 @@
   pointer-events: none;
 }
 
+h1 {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 750;
+  font-size: 100px;
+  letter-spacing: 20px;
+  line-height: 50px;
+  -webkit-text-stroke: 1px #707070;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
+.dot {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
 .App-header {
-  background-color: #282c34;
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -23,6 +40,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
 
 .App-link {
   color: #61dafb;
