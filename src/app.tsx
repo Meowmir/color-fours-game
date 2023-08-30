@@ -11,18 +11,16 @@ import FrontPage from "./pages/front-page";
 
 function App() {
   return (
-    <div className="vertical-center">
-      <SocketContext.Provider value={gameSocket}>
-        <BrowserRouter>
-          <div className="App">
-            <Routes>
-              <Route index element={<FrontPage />} />
-              <Route path="/new-game" element={<NewGame />} />
-            </Routes>
-          </div>
-        </BrowserRouter>
-      </SocketContext.Provider>
-    </div>
+    <SocketContext.Provider value={gameSocket}>
+      <BrowserRouter>
+        <div className="app">
+          <Routes>
+            <Route index element={<FrontPage />} />
+            <Route path="/new-game" element={<NewGame />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </SocketContext.Provider>
   );
 }
 
