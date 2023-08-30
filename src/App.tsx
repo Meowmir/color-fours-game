@@ -1,7 +1,9 @@
 import React from "react";
 import logo from "./logo.svg";
+import { Container } from "@mui/material";
 
 import "./App.css";
+import { PlayerNames } from "./player-names";
 import { BoardGrid } from "./board-grid";
 
 function App() {
@@ -9,6 +11,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <Container>
+          <PlayerNames />
+        </Container>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
