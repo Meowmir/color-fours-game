@@ -8,6 +8,7 @@ export default function NewGame() {
   const [newGame, player, isLoading, createGame] = useNewGame();
   const [player1, setPlayer1] = useState("");
 
+
   useEffect(() => {
     if (!newGame) return;
 
