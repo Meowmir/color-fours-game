@@ -4,6 +4,7 @@ import { Container } from "@mui/material";
 
 import "./App.css";
 import { PlayerNames } from "./player-names";
+import { BoardGrid } from "./board-grid";
 
 function App() {
   return (
@@ -13,6 +14,18 @@ function App() {
         <Container>
           <PlayerNames />
         </Container>
+        <p>
+          Edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+        <BoardGrid></BoardGrid>
       </header>
     </div>
   );
