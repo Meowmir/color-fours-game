@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 
 import "./App.css";
+import { BoardGrid } from "./board-grid";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         >
           Learn React
         </a>
+        <BoardGrid></BoardGrid>
       </header>
     </div>
   );
