@@ -7,6 +7,16 @@
   pointer-events: none;
 }
 
+h1 {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 750;
+  font-size: 100px;
+  letter-spacing: 20px;
+  line-height: 50px;
+  -webkit-text-stroke: 1px #707070;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

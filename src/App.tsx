@@ -1,5 +1,9 @@
 import React from "react";
 import logo from "./logo.svg";
+import Container from "@mui/material/Grid";
+
+import "./App.css";
+import { GameTitle } from "./game-title";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Container } from "@mui/material";
 import "./App.css";
@@ -29,6 +33,8 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Container>
+          <GameTitle />
+        </Container>
           <PlayerNames />
         </Container>
         <p>
