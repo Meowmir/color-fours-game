@@ -13,6 +13,13 @@
   }
 }
 
+.dot {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
 .App-header {
   background-color: white;
   min-height: 100vh;
