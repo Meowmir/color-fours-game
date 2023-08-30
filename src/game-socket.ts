@@ -17,21 +17,36 @@ export const SocketContext = createContext(gameSocket);
 
 type Game = { gameId: string };
 
-export function useNewGame(): [Game | null, boolean, () => Promise<void>] {
+export function useNewGame(): [
+  Game | null,
+  string,
+  boolean,
+  (player: string) => Promise<void>,
+] {
   const [newGame, setNewGame] = useState<Game | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const player = "";
 
-  const createNewGame: () => Promise<void> = useCallback(() => {
-    setIsLoading(true);
+  const createNewGame: (player: string) => Promise<void> = useCallback(
+    (player) => {
+      setIsLoading(true);
 
-    return gameSocket
-      .emitWithAck("game", { type: "NEW_GAME" })
-      .then(setNewGame)
-      .catch((err) =>
-        console.error(`Failed creating new game with msg: ${err.message}`, err),
-      )
-      .finally(() => setIsLoading(false));
-  }, []);
+      return gameSocket
+        .emitWithAck("game", {
+          type: "NEW_GAME",
+          player: { name: player, playerId: "1" },
+        })
+        .then(setNewGame)
+        .catch((err) =>
+          console.error(
+            `Failed creating new game with msg: ${err.message}`,
+            err,
+          ),
+        )
+        .finally(() => setIsLoading(false));
+    },
+    [],
+  );
 
-  return [newGame, isLoading, createNewGame];
+  return [newGame, player, isLoading, createNewGame];
 }

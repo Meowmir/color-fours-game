@@ -5,13 +5,11 @@ import { Route, BrowserRouter, Routes, useNavigate } from "react-router-dom";
 
 import NewGame from "./pages/new-game";
 import { gameSocket, SocketContext } from "./game-socket";
-
 import Container from "@mui/material/Grid";
 
 import { GameTitle } from "./game-title";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Container } from "@mui/material";
-import "./App.css";
 import { Player1Chips, Player2Chips } from "./player-chips";
 import { Container } from "@mui/material";
 
@@ -66,6 +64,7 @@ function App() {
     </SocketContext.Provider>
   );
 }
+
         
         function Splash() {
   const navigate = useNavigate();
