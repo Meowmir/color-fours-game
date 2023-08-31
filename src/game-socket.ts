@@ -1,12 +1,15 @@
 import { io } from "socket.io-client";
 import { createContext, useCallback, useState } from "react";
 
-const SOCKET_URL = "http://localhost:3001"; //"http://64.225.83.55";
+// http://localhost:3001
+//const SOCKET_URL = "http://localhost:3001";
+const SOCKET_URL = "http://64.225.83.55";
 const API_KEY_KEY = "myToken";
+const token = localStorage.getItem(API_KEY_KEY);
 
 export const gameSocket = io(SOCKET_URL, {
-  extraHeaders: {
-    "X-API-TOKEN": localStorage.getItem(API_KEY_KEY) || "",
+  auth: {
+    "X-API-TOKEN": token ? atob(token) : "",
   },
 });
 
