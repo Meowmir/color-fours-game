@@ -29,7 +29,7 @@ h1 {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  display: inline-block;
+  display: block;
 }
 
 .App-header {
