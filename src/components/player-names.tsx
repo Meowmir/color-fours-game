@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { TextField } from "@mui/material";
 
-export function Player1Name() {
-  const [player1, setPlayer1] = useState("");
+type Player1NameProps = {
+  onChange: (name: string) => void;
+};
 
+export function Player1Name({ onChange }: Player1NameProps) {
   return (
     <TextField
       inputProps={{ min: 0, style: { textAlign: "center" } }}
@@ -16,7 +18,7 @@ export function Player1Name() {
       color="secondary"
       variant="outlined"
       onChange={(e) => {
-        setPlayer1(e.target.value);
+        onChange(e.target.value);
       }}
     />
   );
