@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Button, Container } from "@mui/material";
+import { Alert, Button, Container, Snackbar } from "@mui/material";
 
 import { PlayerChips } from "../components/player-chips";
 import { GameTitle } from "../components/game-title";
@@ -12,6 +12,18 @@ export default function FrontView() {
   const navigate = useNavigate();
   const [player1, setPlayer1] = useState("");
   const [newGame, isLoading, createGame] = useNewGame();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    if (player1 === "") {
+      setOpen(true);
+      setTimeout(() => {
+        setOpen(false);
+      }, 3000);
+    } else {
+      createGame(player1);
+    }
+  };
 
   useEffect(() => {
     if (!newGame) return;
@@ -36,9 +48,18 @@ export default function FrontView() {
       </Container>
       <Player1Name onChange={setPlayer1} />
       <br />
-      <Button variant="contained" onClick={() => createGame(player1)}>
+      <Button variant="contained" onClick={handleClick}>
         NEW GAME
       </Button>
+      <Snackbar
+        open={open}
+        onClose={() => setOpen(false)}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert severity="warning" sx={{ width: "100%" }}>
+          Player name can't be empty.
+        </Alert>
+      </Snackbar>
     </>
   );
 }
