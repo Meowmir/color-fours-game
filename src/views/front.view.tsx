@@ -12,13 +12,20 @@ export default function FrontView() {
   const navigate = useNavigate();
   const [player1, setPlayer1] = useState("");
   const [newGame, isLoading, createGame] = useNewGame();
-  const [open, setOpen] = React.useState(false);
+  const [openAlertEmptyName, setOpenAlertEmptyName] = React.useState(false);
+  const [openAlertShortName, setOpenAlertShortName] = React.useState(false);
 
   const handleClick = () => {
     if (player1 === "") {
-      setOpen(true);
+      setOpenAlertEmptyName(true);
       setTimeout(() => {
-        setOpen(false);
+        setOpenAlertEmptyName(false);
+      }, 3000);
+    }
+    if (player1 != "" && player1.length < 3) {
+      setOpenAlertShortName(true);
+      setTimeout(() => {
+        setOpenAlertShortName(false);
       }, 3000);
     } else {
       createGame(player1);
@@ -52,12 +59,21 @@ export default function FrontView() {
         NEW GAME
       </Button>
       <Snackbar
-        open={open}
-        onClose={() => setOpen(false)}
+        open={openAlertEmptyName}
+        onClose={() => setOpenAlertEmptyName(false)}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
-        <Alert severity="warning" sx={{ width: "100%" }}>
+        <Alert severity="error" sx={{ width: "100%" }}>
           Player name can't be empty.
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={openAlertShortName}
+        onClose={() => setOpenAlertShortName(false)}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert severity="error" sx={{ width: "100%" }}>
+          Player name can't be less than 3 characters.
         </Alert>
       </Snackbar>
     </>
