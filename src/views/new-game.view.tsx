@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import { useNewGame } from "../hooks/use-new-game.hook";
 
-export default function NewGame() {
+export default function NewGameView() {
   const navigate = useNavigate();
   const [newGame, isLoading, createGame] = useNewGame();
   const [player1, setPlayer1] = useState("");

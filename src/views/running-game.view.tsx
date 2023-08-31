@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useRunningGame } from "../hooks/use-running-game.hook";
 
-export default function RunningGame() {
+export default function RunningGameView() {
   const { gameId } = useParams();
   const [theGame, isLoading] = useRunningGame(gameId!);
 

@@ -8,7 +8,7 @@ import { GameTitle } from "../components/game-title";
 import { Player1Name } from "../components/player-names";
 import { useNewGame } from "../hooks/use-new-game.hook";
 
-export default function FrontPage() {
+export default function FrontView() {
   const navigate = useNavigate();
   const [player1, setPlayer1] = useState("");
   const [newGame, isLoading, createGame] = useNewGame();
