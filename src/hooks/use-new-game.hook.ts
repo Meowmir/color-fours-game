@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { useCallback, useState } from "react";
 
 import { gameSocket } from "../game-socket";
@@ -18,7 +19,7 @@ export function useNewGame(): [
       return gameSocket
         .emitWithAck("game", {
           type: "NEW_GAME",
-          player: { name: player, playerId: "1" },
+          player: { name: player, playerId: uuidv4() },
         })
         .then(setNewGame)
         .catch((err) =>

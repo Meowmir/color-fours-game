@@ -16,20 +16,22 @@ export default function FrontView() {
   const [openAlertShortName, setOpenAlertShortName] = React.useState(false);
 
   const handleClick = () => {
+    if (isLoading) return;
     if (player1 === "") {
       setOpenAlertEmptyName(true);
       setTimeout(() => {
         setOpenAlertEmptyName(false);
       }, 3000);
+      return;
     }
-    if (player1 != "" && player1.length < 3) {
+    if (player1 !== "" && player1.length < 3) {
       setOpenAlertShortName(true);
       setTimeout(() => {
         setOpenAlertShortName(false);
       }, 3000);
-    } else {
-      createGame(player1);
+      return;
     }
+    createGame(player1);
   };
 
   useEffect(() => {

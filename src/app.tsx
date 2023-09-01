@@ -18,7 +18,6 @@ function App() {
         <div className="app">
           <Routes>
             <Route index element={<FrontView />} />
-            <Route path="/new-game" element={<NewGameView />} />
             <Route path="/running-game/:gameId" element={<RunningGameView />} />
           </Routes>
         </div>
