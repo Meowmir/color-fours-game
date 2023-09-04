@@ -6,7 +6,6 @@ import { Route, BrowserRouter, Routes, useNavigate } from "react-router-dom";
 
 import { gameSocket, SocketContext } from "./game-socket";
 
-import NewGameView from "./views/new-game.view";
 import FrontView from "./views/front.view";
 import RunningGameView from "./views/running-game.view";
 
@@ -18,7 +17,6 @@ function App() {
         <div className="app">
           <Routes>
             <Route index element={<FrontView />} />
-            <Route path="/new-game" element={<NewGameView />} />
             <Route path="/running-game/:gameId" element={<RunningGameView />} />
           </Routes>
         </div>

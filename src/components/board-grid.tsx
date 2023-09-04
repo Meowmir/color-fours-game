@@ -17,10 +17,7 @@ export function BoardGrid() {
     <Box>
       <Container>
         <Grid container>
-          <Grid xs={12} md={4} lg={3}>
-            poop
-          </Grid>
-          <Grid xs={12} md={8} lg={6}>
+          <Grid xs={12}>
             <Grid
               container
               columns={COL_COUNT}
@@ -41,12 +38,8 @@ export function BoardGrid() {
               ))}
             </Grid>
           </Grid>
-          <Grid xs={12} md={4} lg={3}>
-            poop
-          </Grid>
         </Grid>
       </Container>
-      <Container></Container>
     </Box>
   );
 }
@@ -79,7 +72,13 @@ function BoardCell({
   return (
     <Grid xs={1} className="board-cell">
       <Item>
-        <Checkbox />
+        <Box
+          sx={{
+            width: 30,
+            height: 30,
+            backgroundColor: "primary.dark",
+          }}
+        />
       </Item>
     </Grid>
   );
