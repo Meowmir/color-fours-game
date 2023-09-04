@@ -1,16 +1,14 @@
 import React from "react";
 import "./app.css";
 
-import { Button } from "@mui/material";
-import { Route, BrowserRouter, Routes, useNavigate } from "react-router-dom";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 
 import { gameSocket, SocketContext } from "./game-socket";
 
-import NewGameView from "./views/new-game.view";
 import FrontView from "./views/front.view";
 import RunningGameView from "./views/running-game.view";
 
-function App() {
+export default function App() {
   return (
     // there is no reason for this context apart from being educational
     <SocketContext.Provider value={gameSocket}>
@@ -18,7 +16,6 @@ function App() {
         <div className="app">
           <Routes>
             <Route index element={<FrontView />} />
-            <Route path="/new-game" element={<NewGameView />} />
             <Route path="/running-game/:gameId" element={<RunningGameView />} />
           </Routes>
         </div>
@@ -26,17 +23,3 @@ function App() {
     </SocketContext.Provider>
   );
 }
-
-function Splash() {
-  const navigate = useNavigate();
-
-  return (
-    <header className="App-header">
-      <Button onClick={() => navigate("/new-game")} variant="contained">
-        ?
-      </Button>
-    </header>
-  );
-}
-
-export default App;

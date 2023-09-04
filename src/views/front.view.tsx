@@ -7,6 +7,30 @@ import { PlayerChips } from "../components/player-chips";
 import { GameTitle } from "../components/game-title";
 import { Player1Name } from "../components/player-names";
 import { useNewGame } from "../hooks/use-new-game.hook";
+import { styled } from "@mui/material/styles";
+
+const StyledDiv = styled("div")({
+  textAlign: "center",
+});
+/*
+const StyledSpin = styled()({
+  @media (prefers-reduced-motion: no-preference) {
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+})
+
+ */
 
 export default function FrontView() {
   const navigate = useNavigate();
@@ -55,9 +79,11 @@ export default function FrontView() {
       </Container>
       <Player1Name onChange={setPlayer1} />
       <br />
-      <Button variant="contained" onClick={handleClick}>
-        NEW GAME
-      </Button>
+      <StyledDiv>
+        <Button variant="contained" onClick={handleClick}>
+          NEW GAME
+        </Button>
+      </StyledDiv>
       <Snackbar
         open={openAlertEmptyName}
         onClose={() => setOpenAlertEmptyName(false)}
