@@ -1,7 +1,8 @@
-import { Box, Checkbox, Container, Paper } from "@mui/material";
+import { Box, Container, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
 import React from "react";
+import { PlayerChips } from "./player-chips";
 
 const ROW_COUNT = 12;
 const COL_COUNT = 12;
@@ -17,7 +18,10 @@ export function BoardGrid() {
     <Box>
       <Container>
         <Grid container>
-          <Grid xs={12}>
+          <Grid xs={2}>
+            <PlayerChips />
+          </Grid>
+          <Grid xs={8}>
             <Grid
               container
               columns={COL_COUNT}
@@ -37,6 +41,9 @@ export function BoardGrid() {
                 <BoardRow row={row} rowIndex={index} key={index} />
               ))}
             </Grid>
+          </Grid>
+          <Grid xs={2}>
+            <PlayerChips fill />
           </Grid>
         </Grid>
       </Container>
