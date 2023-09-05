@@ -54,8 +54,8 @@ export function BoardGrid() {
 function BoardRow({ row, rowIndex }: { row: null[]; rowIndex: number }) {
   return (
     <>
-      {row.map((cell, index) => (
-        <BoardCell cell={cell} cellIndex={index} rowIndex={index} key={index} />
+      {row.map((tile, index) => (
+        <BoardCell tile={tile} tileIndex={index} rowIndex={index} key={index} />
       ))}
     </>
   );
@@ -70,10 +70,10 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function BoardCell({
-  cell,
+  tile,
 }: {
-  cell: null;
-  cellIndex: number;
+  tile: null;
+  tileIndex: number;
   rowIndex: number;
 }) {
   return (

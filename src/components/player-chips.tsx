@@ -25,7 +25,7 @@ const StackedDots = styled("div")({
 export function PlayerChips({ fill }: { fill?: boolean }) {
   const eventHandler = () => console.log("WOOW");
   return (
-    <div style={{ position: "static" }}>
+    <div>
       <StackedDots>
         <StyledDot
           className="dot"
