@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Game } from "../types";
+import { Game } from "../my-types";
 import { gameSocket } from "../game-socket";
 
 export function useRunningGame(gameId: string): [Game | null, boolean] {

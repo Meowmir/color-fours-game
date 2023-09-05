@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
-import Draggable from "react-draggable";
 import React from "react";
+import { useDrag } from "react-dnd";
+import { ItemType } from "../my-types";
 
 // creating a "base dot"
 const Dot = styled("div")({
@@ -23,112 +24,29 @@ const StackedDots = styled("div")({
 });
 
 export function PlayerChips({ fill }: { fill?: boolean }) {
-  const eventHandler = () => console.log("WOOW");
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: ItemType.Chip,
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging(),
+    }),
+  }));
+
   return (
     <div>
       <StackedDots>
         <StyledDot
+          ref={drag}
           className="dot"
           style={{
             backgroundColor: fill ? "#00D6F2" : "",
             borderColor: "#00D6F2",
-            opacity: 0.33,
+            opacity: isDragging ? 0.33 : 1,
             position: "absolute",
             top: 0,
             left: 0,
+            cursor: "move",
           }}
         ></StyledDot>
-        <Draggable onStart={eventHandler} handle="#handle">
-          <StyledDot
-            id="handle"
-            className="dot"
-            style={{
-              backgroundColor: fill ? "#00D6F2" : "",
-              borderColor: "#00D6F2",
-              position: "relative",
-              top: 0,
-              left: 0,
-            }}
-          ></StyledDot>
-        </Draggable>
-      </StackedDots>
-      <br />
-      <StackedDots>
-        <StyledDot
-          className="dot"
-          style={{
-            backgroundColor: fill ? "#90EA00" : "",
-            borderColor: "#90EA00",
-            opacity: 0.33,
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }}
-        ></StyledDot>
-        <Draggable>
-          <StyledDot
-            className="dot"
-            style={{
-              backgroundColor: fill ? "#90EA00" : "",
-              borderColor: "#90EA00",
-              position: "relative",
-              top: 0,
-              left: 0,
-            }}
-          ></StyledDot>
-        </Draggable>
-      </StackedDots>
-      <br />
-      <StackedDots>
-        <StyledDot
-          className="dot"
-          style={{
-            backgroundColor: fill ? "#FFB100" : "",
-            borderColor: "#FFB100",
-            opacity: 0.33,
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }}
-        ></StyledDot>
-        <Draggable>
-          <StyledDot
-            className="dot"
-            style={{
-              backgroundColor: fill ? "#FFB100" : "",
-              borderColor: "#FFB100",
-              position: "relative",
-              top: 0,
-              left: 0,
-            }}
-          ></StyledDot>
-        </Draggable>
-      </StackedDots>
-      <br />
-      <StackedDots>
-        <StyledDot
-          className="dot"
-          style={{
-            backgroundColor: fill ? "#EA0090" : "",
-            borderColor: "#EA0090",
-            opacity: 0.33,
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }}
-        ></StyledDot>
-        <Draggable>
-          <StyledDot
-            className="dot"
-            style={{
-              backgroundColor: fill ? "#EA0090" : "",
-              borderColor: "#EA0090",
-              position: "relative",
-              top: 0,
-              left: 0,
-            }}
-          ></StyledDot>
-        </Draggable>
       </StackedDots>
     </div>
   );

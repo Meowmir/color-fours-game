@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
 import { gameSocket } from "../game-socket";
-import { Game } from "../types";
+import { Game } from "../my-types";
 
 export function useNewGame(): [
   Game | null,

@@ -14,3 +14,7 @@ export type ReadTileDTO = {
 export type ReadPlayerDTO = {
   name: string;
 };
+
+export const ItemType = {
+  Chip: "chip",
+};

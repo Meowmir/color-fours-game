@@ -3,6 +3,8 @@ import "./app.css";
 
 import { Button } from "@mui/material";
 import { Route, BrowserRouter, Routes, useNavigate } from "react-router-dom";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 import { gameSocket, SocketContext } from "./game-socket";
 
@@ -11,17 +13,21 @@ import RunningGameView from "./views/running-game.view";
 
 function App() {
   return (
-    // there is no reason for this context apart from being educational
-    <SocketContext.Provider value={gameSocket}>
-      <BrowserRouter>
-        <div className="app">
-          <Routes>
-            <Route index element={<FrontView />} />
-            <Route path="/running-game/:gameId" element={<RunningGameView />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    </SocketContext.Provider>
+    <DndProvider backend={HTML5Backend}>
+      <SocketContext.Provider value={gameSocket}>
+        <BrowserRouter>
+          <div className="app">
+            <Routes>
+              <Route index element={<FrontView />} />
+              <Route
+                path="/running-game/:gameId"
+                element={<RunningGameView />}
+              />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </SocketContext.Provider>
+    </DndProvider>
   );
 }
 
