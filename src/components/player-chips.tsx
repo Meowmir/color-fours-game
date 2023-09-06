@@ -3,6 +3,11 @@ import React from "react";
 import { useDrag } from "react-dnd";
 import { ItemType } from "../my-types";
 
+const blueColor = "#00D6F2";
+const greenColor = "#90EA00";
+const orangeColor = "#FFB100";
+const pinkColor = "#EA0090";
+
 // creating a "base dot"
 const Dot = styled("div")({
   height: 50,
@@ -18,36 +23,130 @@ const StyledDot = styled(Dot)({
   borderWidth: 2,
 });
 
-const StackedDots = styled("div")({
-  display: "inline-block",
-  position: "relative",
-});
-
-export function PlayerChips({ fill }: { fill?: boolean }) {
+export function PlayerBlueChip({
+  fill,
+  color,
+}: {
+  fill?: boolean;
+  color: string;
+}) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemType.Chip,
+    item: { color, backgroundColor: fill },
     collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
+      isDragging: monitor.isDragging(),
     }),
   }));
 
   return (
-    <div>
-      <StackedDots>
-        <StyledDot
-          ref={drag}
-          className="dot"
-          style={{
-            backgroundColor: fill ? "#00D6F2" : "",
-            borderColor: "#00D6F2",
-            opacity: isDragging ? 0.33 : 1,
-            position: "absolute",
-            top: 0,
-            left: 0,
-            cursor: "move",
-          }}
-        ></StyledDot>
-      </StackedDots>
-    </div>
+    <>
+      <StyledDot
+        ref={drag}
+        className="dot"
+        style={{
+          backgroundColor: fill ? blueColor : "",
+          borderColor: blueColor,
+          color: "",
+          opacity: isDragging ? 0.33 : 1,
+          cursor: "move",
+        }}
+      ></StyledDot>
+    </>
+  );
+}
+
+export function PlayerGreenChip({
+  fill,
+  color,
+}: {
+  fill?: boolean;
+  color: string;
+}) {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: ItemType.Chip,
+    item: { color, backgroundColor: fill },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
+
+  return (
+    <>
+      <StyledDot
+        ref={drag}
+        className="dot"
+        style={{
+          backgroundColor: fill ? greenColor : "",
+          borderColor: greenColor,
+          color: "",
+          opacity: isDragging ? 0.33 : 1,
+          cursor: "move",
+        }}
+      ></StyledDot>
+    </>
+  );
+}
+
+export function PlayerOrangeChip({
+  fill,
+  color,
+}: {
+  fill?: boolean;
+  color: string;
+}) {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: ItemType.Chip,
+    item: { color, backgroundColor: fill },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
+
+  return (
+    <>
+      <StyledDot
+        ref={drag}
+        className="dot"
+        style={{
+          backgroundColor: fill ? orangeColor : "",
+          borderColor: orangeColor,
+          color: "",
+          opacity: isDragging ? 0.33 : 1,
+          cursor: "move",
+        }}
+      ></StyledDot>
+    </>
+  );
+}
+
+export function PlayerPinkChip({
+  fill,
+  color,
+}: {
+  fill?: boolean;
+  color: string;
+}) {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: ItemType.Chip,
+    item: { color, backgroundColor: fill },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
+
+  return (
+    <>
+      <StyledDot
+        ref={drag}
+        className="dot"
+        style={{
+          backgroundColor: fill ? pinkColor : "",
+          borderColor: pinkColor,
+          color: "",
+          opacity: isDragging ? 0.33 : 1,
+          cursor: "move",
+        }}
+      ></StyledDot>
+    </>
   );
 }

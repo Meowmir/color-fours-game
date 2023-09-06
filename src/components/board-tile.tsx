@@ -1,36 +1,59 @@
 import React from "react";
-import type { FC, ReactNode } from "react";
-
-import { Tile } from "./tile";
 import { useDrop } from "react-dnd";
-import { ItemType } from "../my-types";
+import { Paper } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
+import { styled } from "@mui/material/styles";
 
-import type { GameTest, Position } from "../game-test";
+import { ItemType, ReadTileDTO } from "../my-types";
 
-export interface BoardSquareProps {
-  x: number;
-  y: number;
-  children?: ReactNode;
-  game: Game;
-}
+export type BoardTileProps = {
+  tile: ReadTileDTO | null;
+  tileIndex: number;
+  rowIndex: number;
+};
 
-export default function BoardTile({ x, y, children }) {
-  const [{ isOver }, drop] = useDrop(
-    () => ({
-      accept: ItemType.Chip,
-      drop: () => moveChip(x, y),
-      collect: (monitor) => ({
-        isOver: !!monitor.isOver(),
-      }),
-    }),
-    [x, y],
-  );
+const Dot = styled("div")({
+  height: 20,
+  width: 20,
+  borderRadius: "50%",
+  margin: "auto",
+});
+
+const StyledDot = styled(Dot)({
+  marginTop: 0,
+  borderStyle: "solid",
+  borderWidth: 2,
+});
+
+export function BoardTile({ tile, tileIndex, rowIndex }: BoardTileProps) {
+  const [, drop] = useDrop(() => ({
+    accept: ItemType.Chip,
+    drop(item) {
+      console.log(`On row ${rowIndex}, tile ${tileIndex} you dropped`, item);
+    },
+    canDrop: () => !tile,
+  }));
+
   return (
-    <div
-      ref={drop}
-      style={{ position: "relative", width: "100%", height: "100%" }}
+    <Grid
+      xs={1}
+      className="board-cell"
+      sx={{
+        display: "inline-block",
+        position: "relative",
+      }}
     >
-      <Tile>{children}</Tile>;
-    </div>
+      <Item ref={drop}>
+        <StyledDot />
+      </Item>
+    </Grid>
   );
 }
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));

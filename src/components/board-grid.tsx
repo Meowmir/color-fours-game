@@ -1,53 +1,32 @@
-import { Box, Container, Paper } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Box, Container } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import React, { FC, useEffect, useState } from "react";
-import { PlayerChips } from "./player-chips";
-import { Tile } from "./tile";
-import BoardTile from "./board-tile";
-import { Piece } from "./piece";
+import React, { FC } from "react";
+import {
+  PlayerBlueChip,
+  PlayerGreenChip,
+  PlayerOrangeChip,
+  PlayerPinkChip,
+} from "./player-chips";
+import { BoardTile } from "./board-tile";
 
-import type { GameTest, Position } from "../game-test";
+import { Game, ReadTileDTO } from "../my-types";
 
-const ROW_COUNT = 12;
 const COL_COUNT = 12;
 
-const game: { gameboard: null[][] } = {
-  gameboard: Array(ROW_COUNT)
-    .fill(null)
-    .map((_) => Array(COL_COUNT).fill(null)),
-};
-
 export interface BoardProps {
-  gameT: GameTest;
+  game: Game;
 }
 
-export const BoardGrid: FC<BoardProps> = ({ gameT }) => {
-  const [[chipX, chipY], setChipPosition] = useState<Position>(
-    gameT.chipPosition,
-  );
-
-  useEffect(() => gameT.observe(setChipPosition));
-
-  function RenderTile(i: number) {
-    const x = i % 8;
-    const y = Math.floor(i / 8);
-
-    return (
-      <div key={i} style={{ width: "12.5%", height: "12.5%" }}>
-        <BoardTile x={x} y={y}>
-          <Piece hasChip={x === chipX && y === chipY}></Piece>
-        </BoardTile>
-      </div>
-    );
-  }
-
+export const BoardGrid: FC<BoardProps> = ({ game }) => {
   return (
     <Box>
       <Container>
         <Grid container>
           <Grid xs={2}>
-            <PlayerChips />
+            <PlayerBlueChip color="blue" />
+            <PlayerGreenChip color="green" />
+            <PlayerOrangeChip color="orange" />
+            <PlayerPinkChip color="pink" />
           </Grid>
           <Grid xs={8}>
             <Grid
@@ -65,13 +44,16 @@ export const BoardGrid: FC<BoardProps> = ({ gameT }) => {
                 },
               }}
             >
-              {game.gameboard.map((row, index) => (
+              {game.gameBoard.map((row, index) => (
                 <BoardRow row={row} rowIndex={index} key={index} />
               ))}
             </Grid>
           </Grid>
           <Grid xs={2}>
-            <PlayerChips fill />
+            <PlayerBlueChip fill color="blue" />
+            <PlayerGreenChip fill color="green" />
+            <PlayerOrangeChip fill color="orange" />
+            <PlayerPinkChip fill color="pink" />
           </Grid>
         </Grid>
       </Container>
@@ -79,29 +61,23 @@ export const BoardGrid: FC<BoardProps> = ({ gameT }) => {
   );
 };
 
-function BoardRow({ row, rowIndex }: { row: null[]; rowIndex: number }) {
+function BoardRow({
+  row,
+  rowIndex,
+}: {
+  row: (ReadTileDTO | null)[];
+  rowIndex: number;
+}) {
   return (
     <>
       {row.map((tile, index) => (
-        <Tile tile={tile} tileIndex={index} rowIndex={index} key={index} />
+        <BoardTile
+          tile={tile}
+          tileIndex={index}
+          rowIndex={rowIndex}
+          key={index}
+        />
       ))}
     </>
   );
 }
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-/*
-function RenderPiece(x, y, [chipX, chipY]) {
-  if (x === chipX && y === chipY) {
-    return <PlayerChips />;
-  }
-}
-
-
- */

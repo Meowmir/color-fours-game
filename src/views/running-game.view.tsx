@@ -17,10 +17,14 @@ export default function RunningGameView() {
 
   console.log(theGame);
 
+  if (!theGame) {
+    return <p>"LOADING"</p>;
+  }
+
   return (
     <StyledDiv>
       <Container>
-        <BoardGrid />
+        <BoardGrid game={theGame} />
       </Container>
     </StyledDiv>
   );
