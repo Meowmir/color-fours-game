@@ -1,8 +1,11 @@
-import { Box, Container, Paper } from "@mui/material";
+import { Box, Chip, Container, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
 import React from "react";
 import { PlayerChips } from "./player-chips";
+import { useRunningGame } from "../hooks/use-running-game.hook";
+import { useParams } from "react-router-dom";
+import { Game } from "../types";
 
 const ROW_COUNT = 12;
 const COL_COUNT = 12;
@@ -14,11 +17,34 @@ const game: { gameboard: null[][] } = {
 };
 
 export function BoardGrid() {
+  const { gameId } = useParams();
+  const [theGame, isLoading] = useRunningGame(gameId!);
+
+  if (!theGame) {
+    return <p>"Loading"</p>;
+  }
+  const { players } = theGame;
+  const player1 = players[0];
+  const player1name = Object.values(player1)[0];
+
+  const player2 = players[1];
+  /*
+  const player2name = Object.values(player2)[0];
+
+   */
+  console.log(player1name);
+  console.log(player2);
+
   return (
     <Box>
       <Container>
         <Grid container>
           <Grid xs={2}>
+            <Chip
+              variant="outlined"
+              color="secondary"
+              label={player1name}
+            ></Chip>
             <PlayerChips />
           </Grid>
           <Grid xs={8}>
@@ -43,6 +69,7 @@ export function BoardGrid() {
             </Grid>
           </Grid>
           <Grid xs={2}>
+            <Chip color="warning" label="BOO"></Chip>
             <PlayerChips fill />
           </Grid>
         </Grid>

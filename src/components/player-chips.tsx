@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
 import Draggable from "react-draggable";
 import React from "react";
+import { Game } from "../types";
 
 // creating a "base dot"
 const Dot = styled("div")({
