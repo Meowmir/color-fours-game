@@ -4,6 +4,7 @@ export type Game = {
   turn: number;
   gameBoard: (ReadTileDTO | null)[][];
   players: ReadPlayerDTO[];
+  isP1?: boolean;
 };
 
 export type ReadTileDTO = {

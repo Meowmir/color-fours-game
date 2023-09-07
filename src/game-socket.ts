@@ -2,8 +2,8 @@ import { io } from "socket.io-client";
 import { createContext } from "react";
 
 // http://localhost:3001
-//const SOCKET_URL = "http://localhost:3001";
-const SOCKET_URL = "http://64.225.83.55";
+const SOCKET_URL = "http://localhost:3001";
+//const SOCKET_URL = "http://64.225.83.55";
 const API_KEY_KEY = "myToken";
 const token = localStorage.getItem(API_KEY_KEY);
 

@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 
 import { gameSocket } from "../game-socket";
 import { Game } from "../my-types";
+import { getSessionId } from "../utils/get-player-id.util";
 
 export function useNewGame(): [
   Game | null,
@@ -18,7 +19,7 @@ export function useNewGame(): [
       return gameSocket
         .emitWithAck("game", {
           type: "NEW_GAME",
-          player: { name: player, playerId: "1" },
+          player: { name: player, playerId: getSessionId() },
         })
         .then(setNewGame)
         .catch((err) =>
