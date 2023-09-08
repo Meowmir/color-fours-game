@@ -38,29 +38,24 @@ export default function FrontView() {
     navigate(`/running-game/${newGame.gameId}`);
   }, [navigate, newGame]);
 
-  const blueColor = "#00D6F2";
-  const greenColor = "#90EA00";
-  const orangeColor = "#FFB100";
-  const pinkColor = "#EA0090";
-
   return (
     <>
       <Container>
         <Grid container spacing={0}>
           <Grid xs={2}>
-            <PlayerChip color={blueColor} />
-            <PlayerChip color={greenColor} />
-            <PlayerChip color={orangeColor} />
-            <PlayerChip color={pinkColor} />
+            <PlayerChip readOnly color="blue" />
+            <PlayerChip readOnly color="green" />
+            <PlayerChip readOnly color="orange" />
+            <PlayerChip readOnly color="pink" />
           </Grid>
           <Grid xs={8}>
             <GameTitle />
           </Grid>
           <Grid xs={2}>
-            <PlayerChip fill color={blueColor} />
-            <PlayerChip fill color={greenColor} />
-            <PlayerChip fill color={orangeColor} />
-            <PlayerChip fill color={pinkColor} />
+            <PlayerChip readOnly fill color="blue" />
+            <PlayerChip readOnly fill color="green" />
+            <PlayerChip readOnly fill color="orange" />
+            <PlayerChip readOnly fill color="pink" />
           </Grid>
         </Grid>
       </Container>

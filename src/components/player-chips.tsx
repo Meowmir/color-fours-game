@@ -23,10 +23,19 @@ const greenColor = "#90EA00";
 const orangeColor = "#FFB100";
 const pinkColor = "#EA0090";
 
-export function PlayerChip({ fill, color }: { fill?: boolean; color: string }) {
+export function PlayerChip({
+  fill,
+  color,
+  readOnly,
+}: {
+  fill?: boolean;
+  color: string;
+  readOnly?: boolean;
+}) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemType.Chip,
     item: { color, isP1: !fill },
+    canDrag: () => !readOnly,
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
