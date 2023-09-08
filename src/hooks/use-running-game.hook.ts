@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { Game } from "../my-types";
 import { gameSocket } from "../game-socket";
+import { getSessionId } from "../utils/get-player-id.util";
 
-export function useRunningGame(gameId: string): [Game | null, boolean] {
+export function useRunningGame(
+  gameId: string,
+): [Game | null, boolean, boolean] {
   const [theGame, setTheGame] = useState<Game | null>(null);
+  const [isP1, setIsP1] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -15,8 +19,12 @@ export function useRunningGame(gameId: string): [Game | null, boolean] {
       .emitWithAck("game", {
         type: "GET_GAME",
         gameId,
+        sessionId: getSessionId(),
       })
-      .then(setTheGame)
+      .then((game) => {
+        setTheGame(game);
+        setIsP1(!!game.isP1);
+      })
       .catch((err) =>
         console.error(`Failed getting the game with msg: ${err.message}`, err),
       )
@@ -31,5 +39,5 @@ export function useRunningGame(gameId: string): [Game | null, boolean] {
     };
   }, [gameId]);
 
-  return [theGame, isLoading];
+  return [theGame, isP1, isLoading];
 }

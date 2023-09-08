@@ -5,7 +5,7 @@ import { Alert, Button, Container, Snackbar } from "@mui/material";
 
 import { PlayerChip } from "../components/player-chips";
 import { GameTitle } from "../components/game-title";
-import { Player1Name } from "../components/player-names";
+import { PlayerName } from "../components/player-names";
 import { useNewGame } from "../hooks/use-new-game.hook";
 
 export default function FrontView() {
@@ -59,7 +59,7 @@ export default function FrontView() {
           </Grid>
         </Grid>
       </Container>
-      <Player1Name onChange={setPlayer1} />
+      <PlayerName label="Player 1" color="secondary" onChange={setPlayer1} />
       <br />
       <Button variant="contained" onClick={handleClick}>
         NEW GAME
