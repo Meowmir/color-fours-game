@@ -19,7 +19,7 @@ export function useNewGame(): [
       return gameSocket
         .emitWithAck("game", {
           type: "NEW_GAME",
-          player: { name: player, playerId: getSessionId() },
+          player: { name: player, sessionId: getSessionId() },
         })
         .then(setNewGame)
         .catch((err) =>
