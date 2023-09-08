@@ -13,20 +13,15 @@ export interface BoardProps {
 }
 
 export const BoardGrid: FC<BoardProps> = ({ game }) => {
-  const blueColor = "#00D6F2";
-  const greenColor = "#90EA00";
-  const orangeColor = "#FFB100";
-  const pinkColor = "#EA0090";
-
   return (
     <Box>
       <Container>
         <Grid container>
           <Grid xs={2}>
-            <PlayerChip color={blueColor} />
-            <PlayerChip color={greenColor} />
-            <PlayerChip color={orangeColor} />
-            <PlayerChip color={pinkColor} />
+            <PlayerChip color="blue" />
+            <PlayerChip color="green" />
+            <PlayerChip color="orange" />
+            <PlayerChip color="pink" />
           </Grid>
           <Grid xs={8}>
             <Grid
@@ -50,10 +45,10 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
             </Grid>
           </Grid>
           <Grid xs={2}>
-            <PlayerChip fill color={blueColor} />
-            <PlayerChip fill color={greenColor} />
-            <PlayerChip fill color={orangeColor} />
-            <PlayerChip fill color={pinkColor} />
+            <PlayerChip fill color="blue" />
+            <PlayerChip fill color="green" />
+            <PlayerChip fill color="orange" />
+            <PlayerChip fill color="pink" />
           </Grid>
         </Grid>
       </Container>

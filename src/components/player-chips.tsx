@@ -18,14 +18,30 @@ const StyledDot = styled(Dot)({
   borderWidth: 2,
 });
 
+const blueColor = "#00D6F2";
+const greenColor = "#90EA00";
+const orangeColor = "#FFB100";
+const pinkColor = "#EA0090";
+
 export function PlayerChip({ fill, color }: { fill?: boolean; color: string }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemType.Chip,
-    item: { color, backgroundColor: fill },
+    item: { color, isP1: !fill },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
   }));
+
+  const styleColor =
+    color === "blue"
+      ? blueColor
+      : color === "green"
+      ? greenColor
+      : color === "orange"
+      ? orangeColor
+      : color === "pink"
+      ? pinkColor
+      : "grey";
 
   return (
     <>
@@ -33,9 +49,8 @@ export function PlayerChip({ fill, color }: { fill?: boolean; color: string }) {
         ref={drag}
         className="dot"
         style={{
-          backgroundColor: fill ? color : "",
-          borderColor: color,
-          color: "",
+          backgroundColor: fill ? styleColor : "",
+          borderColor: styleColor,
           opacity: isDragging ? 0.33 : 1,
           cursor: "move",
         }}
