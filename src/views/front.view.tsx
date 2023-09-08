@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Alert, Button, Container, Snackbar } from "@mui/material";
 
-import { PlayerChips } from "../components/player-chips";
+import { PlayerChip } from "../components/player-chips";
 import { GameTitle } from "../components/game-title";
 import { Player1Name } from "../components/player-names";
 import { useNewGame } from "../hooks/use-new-game.hook";
@@ -43,13 +43,19 @@ export default function FrontView() {
       <Container>
         <Grid container spacing={0}>
           <Grid xs={2}>
-            <PlayerChips />
+            <PlayerChip readOnly color="blue" />
+            <PlayerChip readOnly color="green" />
+            <PlayerChip readOnly color="orange" />
+            <PlayerChip readOnly color="pink" />
           </Grid>
           <Grid xs={8}>
             <GameTitle />
           </Grid>
           <Grid xs={2}>
-            <PlayerChips fill />
+            <PlayerChip readOnly fill color="blue" />
+            <PlayerChip readOnly fill color="green" />
+            <PlayerChip readOnly fill color="orange" />
+            <PlayerChip readOnly fill color="pink" />
           </Grid>
         </Grid>
       </Container>

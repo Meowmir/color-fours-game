@@ -1,4 +1,7 @@
 import { styled } from "@mui/material/styles";
+import React from "react";
+import { useDrag } from "react-dnd";
+import { ItemType } from "../my-types";
 
 // creating a "base dot"
 const Dot = styled("div")({
@@ -15,38 +18,50 @@ const StyledDot = styled(Dot)({
   borderWidth: 2,
 });
 
-export function PlayerChips({ fill }: { fill?: boolean }) {
+const blueColor = "#00D6F2";
+const greenColor = "#90EA00";
+const orangeColor = "#FFB100";
+const pinkColor = "#EA0090";
+
+export function PlayerChip({
+  fill,
+  color,
+  readOnly,
+}: {
+  fill?: boolean;
+  color: string;
+  readOnly?: boolean;
+}) {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: ItemType.Chip,
+    item: { color, isP1: !fill },
+    canDrag: () => !readOnly,
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
+
+  const styleColor =
+    color === "blue"
+      ? blueColor
+      : color === "green"
+      ? greenColor
+      : color === "orange"
+      ? orangeColor
+      : color === "pink"
+      ? pinkColor
+      : "grey";
+
   return (
     <>
       <StyledDot
+        ref={drag}
         className="dot"
         style={{
-          backgroundColor: fill ? "#00D6F2" : "",
-          borderColor: "#00D6F2",
-        }}
-      ></StyledDot>
-
-      <StyledDot
-        className="dot"
-        style={{
-          backgroundColor: fill ? "#90EA00" : "",
-          borderColor: "#90EA00",
-        }}
-      ></StyledDot>
-
-      <StyledDot
-        className="dot"
-        style={{
-          backgroundColor: fill ? "#FFB100" : "",
-          borderColor: "#FFB100",
-        }}
-      ></StyledDot>
-
-      <StyledDot
-        className="dot"
-        style={{
-          backgroundColor: fill ? "#EA0090" : "",
-          borderColor: "#EA0090",
+          backgroundColor: fill ? styleColor : "",
+          borderColor: styleColor,
+          opacity: isDragging ? 0.33 : 1,
+          cursor: "move",
         }}
       ></StyledDot>
     </>

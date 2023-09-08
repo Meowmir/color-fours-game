@@ -1,26 +1,29 @@
-import { Box, Checkbox, Container, Paper } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Box, Container } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import React from "react";
+import React, { FC } from "react";
+import { PlayerChip } from "./player-chips";
+import { BoardTile } from "./board-tile";
 
-const ROW_COUNT = 12;
+import { Game, ReadTileDTO } from "../my-types";
+
 const COL_COUNT = 12;
 
-const game: { gameboard: null[][] } = {
-  gameboard: Array(ROW_COUNT)
-    .fill(null)
-    .map((_) => Array(COL_COUNT).fill(null)),
-};
+export interface BoardProps {
+  game: Game;
+}
 
-export function BoardGrid() {
+export const BoardGrid: FC<BoardProps> = ({ game }) => {
   return (
     <Box>
       <Container>
         <Grid container>
-          <Grid xs={12} md={4} lg={3}>
-            poop
+          <Grid xs={2}>
+            <PlayerChip color="blue" />
+            <PlayerChip color="green" />
+            <PlayerChip color="orange" />
+            <PlayerChip color="pink" />
           </Grid>
-          <Grid xs={12} md={8} lg={6}>
+          <Grid xs={8}>
             <Grid
               container
               columns={COL_COUNT}
@@ -36,51 +39,40 @@ export function BoardGrid() {
                 },
               }}
             >
-              {game.gameboard.map((row, index) => (
+              {game.gameBoard.map((row, index) => (
                 <BoardRow row={row} rowIndex={index} key={index} />
               ))}
             </Grid>
           </Grid>
-          <Grid xs={12} md={4} lg={3}>
-            poop
+          <Grid xs={2}>
+            <PlayerChip fill color="blue" />
+            <PlayerChip fill color="green" />
+            <PlayerChip fill color="orange" />
+            <PlayerChip fill color="pink" />
           </Grid>
         </Grid>
       </Container>
-      <Container></Container>
     </Box>
   );
-}
+};
 
-function BoardRow({ row, rowIndex }: { row: null[]; rowIndex: number }) {
-  return (
-    <>
-      {row.map((cell, index) => (
-        <BoardCell cell={cell} cellIndex={index} rowIndex={index} key={index} />
-      ))}
-    </>
-  );
-}
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
-function BoardCell({
-  cell,
+function BoardRow({
+  row,
+  rowIndex,
 }: {
-  cell: null;
-  cellIndex: number;
+  row: (ReadTileDTO | null)[];
   rowIndex: number;
 }) {
   return (
-    <Grid xs={1} className="board-cell">
-      <Item>
-        <Checkbox />
-      </Item>
-    </Grid>
+    <>
+      {row.map((tile, index) => (
+        <BoardTile
+          tile={tile}
+          tileIndex={index}
+          rowIndex={rowIndex}
+          key={index}
+        />
+      ))}
+    </>
   );
 }
