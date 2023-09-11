@@ -1,10 +1,9 @@
 import React, { useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Button, Modal, Box, Stack } from "@mui/material";
+import { Button, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import { BoardGrid } from "../components/board-grid";
 import { useRunningGame } from "../hooks/use-running-game.hook";
 import { PlayerName } from "../components/player-names";
 import { useAddPlayer } from "../hooks/use-add-player.hook";
@@ -15,19 +14,6 @@ import { GameTitle } from "../components/game-title";
 const StyledDiv = styled("div")({
   marginTop: 30,
 });
-
-const styledBox = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  backgroundColor: "background.paper",
-  border: "2px solid #000",
-  borderRadius: 4,
-  boxShadow: 24,
-  padding: 4,
-};
 
 export default function RunningGameView() {
   const { gameId } = useParams();
@@ -103,7 +89,7 @@ export default function RunningGameView() {
         </Grid>
         <Grid xs={8}>
           <Box>
-            <img alt="" style={{ width: "50%" }} src="/circles@2x.png" />
+            <img style={{ width: "50%" }} src="/circles@2x.png" />
           </Box>
         </Grid>
         <Grid xs={2}>
