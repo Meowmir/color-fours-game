@@ -23,10 +23,9 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
   }
 
   const { players } = theGame;
-  const [{ name: player1Name }, { name: player2Name }] = players;
+  const [{ name: player1Name }] = players;
 
   console.log(player1Name);
-  console.log(player2Name);
 
   return (
     <Box>

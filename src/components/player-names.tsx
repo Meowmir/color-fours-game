@@ -1,13 +1,20 @@
 import React from "react";
-import { Box, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 
 type PlayerNameProps = {
   onChange: (name: string) => void;
-  color: string;
+  color:
+    | "error"
+    | "primary"
+    | "secondary"
+    | "info"
+    | "success"
+    | "warning"
+    | undefined;
   label: string;
 };
 
-export function PlayerName({ onChange }: PlayerNameProps) {
+export function PlayerName({ onChange, label, color }: PlayerNameProps) {
   return (
     <TextField
       inputProps={{ min: 0, style: { textAlign: "center" } }}
@@ -17,6 +24,8 @@ export function PlayerName({ onChange }: PlayerNameProps) {
       margin="normal"
       id="outlined-basic"
       variant="outlined"
+      label={label}
+      color={color}
       onChange={(e) => {
         onChange(e.target.value);
       }}
