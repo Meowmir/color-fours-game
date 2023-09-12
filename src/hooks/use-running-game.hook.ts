@@ -31,7 +31,9 @@ export function useRunningGame(
       .finally(() => setIsLoading(false));
 
     // listen for updates
-    gameSocket.on(`game/${gameId}`, setTheGame);
+    gameSocket.on(`game/${gameId}`, (game) => {
+      setTheGame(game);
+    });
 
     return () => {
       // clean up your mess whenever this effect unmounts

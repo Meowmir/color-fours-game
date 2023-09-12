@@ -23,15 +23,26 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
   }
 
   const { players } = theGame;
-  const [{ name: player1Name }] = players;
-
+  const [{ name: player1Name }, { name: player2Name }] = players;
   console.log(player1Name);
+  console.log(player2Name);
 
   return (
     <Box>
       <Container>
         <Grid container>
           <Grid xs={2}>
+            <Box
+              sx={{
+                backgroundColor: "red",
+                width: 100,
+                height: 30,
+                borderRadius: 4,
+                margin: "auto",
+              }}
+            >
+              {player1Name}
+            </Box>
             <PlayerChip color="blue" />
             <PlayerChip color="green" />
             <PlayerChip color="orange" />
@@ -59,6 +70,17 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
             </Grid>
           </Grid>
           <Grid xs={2}>
+            <Box
+              sx={{
+                backgroundColor: "red",
+                width: 100,
+                height: 30,
+                borderRadius: 4,
+                margin: "auto",
+              }}
+            >
+              {player2Name}
+            </Box>
             <PlayerChip fill color="blue" />
             <PlayerChip fill color="green" />
             <PlayerChip fill color="orange" />
@@ -69,7 +91,6 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
     </Box>
   );
 };
-
 function BoardRow({
   row,
   rowIndex,
