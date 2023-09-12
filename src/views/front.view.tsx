@@ -61,7 +61,7 @@ export default function FrontView() {
       </Container>
       <PlayerName label="Player 1" color="secondary" onChange={setPlayer1} />
       <br />
-      <Button variant="contained" color="success" onClick={handleClick}>
+      <Button variant="contained" color="secondary" onClick={handleClick}>
         CREATE NEW GAME
       </Button>
       <Snackbar

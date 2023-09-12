@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Button, Box } from "@mui/material";
+import { Button, Box, Snackbar, Alert } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 import { useRunningGame } from "../hooks/use-running-game.hook";
@@ -14,6 +14,20 @@ import { GameTitle } from "../components/game-title";
 const StyledDiv = styled("div")({
   marginTop: 30,
 });
+
+const StyledSpinner = styled("img")(({ theme }) => ({
+  animation: "circles@2x infinite 700ms linear",
+  transformBox: "fill-box",
+
+  "@keyframes circles@2x": {
+    from: {
+      transform: "rotate(0deg)",
+    },
+    to: {
+      transform: "rotate(360deg)",
+    },
+  },
+}));
 
 export default function RunningGameView() {
   const { gameId } = useParams();
@@ -29,12 +43,14 @@ export default function RunningGameView() {
       setTimeout(() => {
         setOpenAlertEmptyName(false);
       }, 3000);
+      return;
     }
     if (player2 !== "" && player2.length < 3) {
       setOpenAlertShortName(true);
       setTimeout(() => {
         setOpenAlertShortName(false);
       }, 3000);
+      return;
     } else {
       addPlayer(player2);
     }
@@ -74,6 +90,24 @@ export default function RunningGameView() {
         <Button variant="contained" color="warning" onClick={handleClick}>
           ADD PLAYER 2
         </Button>
+        <Snackbar
+          open={openAlertEmptyName}
+          onClose={() => setOpenAlertEmptyName(false)}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert severity="error" sx={{ width: "100%" }}>
+            Player name can't be empty.
+          </Alert>
+        </Snackbar>
+        <Snackbar
+          open={openAlertShortName}
+          onClose={() => setOpenAlertShortName(false)}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert severity="error" sx={{ width: "100%" }}>
+            Player name can't be less than 3 characters.
+          </Alert>
+        </Snackbar>
       </StyledDiv>
     );
   }
@@ -89,7 +123,25 @@ export default function RunningGameView() {
         </Grid>
         <Grid xs={8}>
           <Box>
-            <img style={{ width: "50%" }} src="/circles@2x.png" />
+            <StyledSpinner
+              style={{ width: "20%" }}
+              src={"/circles@2x.png"}
+              sx={{
+                animation: "spin 8s linear infinite",
+                "@keyframes spin": {
+                  "0%": {
+                    transform: "rotate(0deg)",
+                  },
+                  "100%": {
+                    transform: "rotate(360deg)",
+                  },
+                },
+              }}
+            />
+            <h2>WAITING FOR PLAYER 2</h2>
+            <Button variant="contained" color="success">
+              COPY INVITE LINK
+            </Button>
           </Box>
         </Grid>
         <Grid xs={2}>
