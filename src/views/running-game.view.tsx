@@ -9,7 +9,7 @@ import { PlayerName } from "../components/player-names";
 import { useAddPlayer } from "../hooks/use-add-player.hook";
 import Grid from "@mui/material/Unstable_Grid2";
 import { PlayerChip } from "../components/player-chips";
-import { GameTitle } from "../components/game-title";
+import { GameTitle, SmallGameTitle } from "../components/game-title";
 import { BoardGrid } from "../components/board-grid";
 
 const StyledDiv = styled("div")({
@@ -37,6 +37,8 @@ export default function RunningGameView() {
   //  const [newGame, isLoading, createGame] = useNewGame();
   const [openAlertEmptyName, setOpenAlertEmptyName] = useState(false);
   const [openAlertShortName, setOpenAlertShortName] = useState(false);
+  const [openAlertLongName, setOpenAlertLongName] = useState(false);
+
   const [updatedGame, isUpdating, addPlayer] = useAddPlayer(gameId);
   const handleClick = useCallback(() => {
     if (player2 === "") {
@@ -52,6 +54,12 @@ export default function RunningGameView() {
         setOpenAlertShortName(false);
       }, 3000);
       return;
+    }
+    if (player2 !== "" && player2.length > 10) {
+      setOpenAlertLongName(true);
+      setTimeout(() => {
+        setOpenAlertLongName(false);
+      }, 3000);
     } else {
       addPlayer(player2);
     }
@@ -109,6 +117,15 @@ export default function RunningGameView() {
             Player name can't be less than 3 characters.
           </Alert>
         </Snackbar>
+        <Snackbar
+          open={openAlertLongName}
+          onClose={() => setOpenAlertShortName(false)}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert severity="error" sx={{ width: "100%" }}>
+            Player name can't be more than 10 characters.
+          </Alert>
+        </Snackbar>
       </StyledDiv>
     );
   }
@@ -159,6 +176,7 @@ export default function RunningGameView() {
 
   return (
     <StyledDiv>
+      <SmallGameTitle />
       <BoardGrid game={theGame} />
     </StyledDiv>
   );

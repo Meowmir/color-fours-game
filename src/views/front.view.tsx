@@ -14,6 +14,7 @@ export default function FrontView() {
   const [newGame, isLoading, createGame] = useNewGame();
   const [openAlertEmptyName, setOpenAlertEmptyName] = React.useState(false);
   const [openAlertShortName, setOpenAlertShortName] = React.useState(false);
+  const [openAlertLongName, setOpenAlertLongName] = React.useState(false);
 
   const handleClick = () => {
     if (player1 === "") {
@@ -22,10 +23,16 @@ export default function FrontView() {
         setOpenAlertEmptyName(false);
       }, 3000);
     }
-    if (player1 != "" && player1.length < 3) {
+    if (player1 !== "" && player1.length < 3) {
       setOpenAlertShortName(true);
       setTimeout(() => {
         setOpenAlertShortName(false);
+      }, 3000);
+    }
+    if (player1 !== "" && player1.length > 10) {
+      setOpenAlertLongName(true);
+      setTimeout(() => {
+        setOpenAlertLongName(false);
       }, 3000);
     } else {
       createGame(player1);
@@ -80,6 +87,15 @@ export default function FrontView() {
       >
         <Alert severity="error" sx={{ width: "100%" }}>
           Player name can't be less than 3 characters.
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={openAlertLongName}
+        onClose={() => setOpenAlertShortName(false)}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert severity="error" sx={{ width: "100%" }}>
+          Player name can't be more than 10 characters.
         </Alert>
       </Snackbar>
     </>
