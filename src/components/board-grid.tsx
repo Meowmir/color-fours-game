@@ -7,6 +7,8 @@ import { PlayerChip } from "./player-chips";
 import { BoardTile } from "./board-tile";
 import { Game, ReadTileDTO } from "../my-types";
 import { useRunningGame } from "../hooks/use-running-game.hook";
+import { PlayerNameDisplay } from "./player-name-display";
+import { blueColor, greenColor, orangeColor, pinkColor } from "../constants";
 
 const COL_COUNT = 12;
 
@@ -32,17 +34,10 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
       <Container>
         <Grid container>
           <Grid xs={2}>
-            <Box
-              sx={{
-                backgroundColor: "red",
-                width: 100,
-                height: 30,
-                borderRadius: 4,
-                margin: "auto",
-              }}
-            >
-              {player1Name}
-            </Box>
+            <PlayerNameDisplay
+              playerName={player1Name}
+              borderColor={blueColor}
+            />
             <PlayerChip color="blue" />
             <PlayerChip color="green" />
             <PlayerChip color="orange" />
@@ -70,17 +65,12 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
             </Grid>
           </Grid>
           <Grid xs={2}>
-            <Box
-              sx={{
-                backgroundColor: "red",
-                width: 100,
-                height: 30,
-                borderRadius: 4,
-                margin: "auto",
-              }}
-            >
-              {player2Name}
-            </Box>
+            <PlayerNameDisplay
+              playerName={player2Name}
+              backgroundColor={pinkColor}
+              borderColor={pinkColor}
+              color="white"
+            />
             <PlayerChip fill color="blue" />
             <PlayerChip fill color="green" />
             <PlayerChip fill color="orange" />
