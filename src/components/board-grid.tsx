@@ -10,6 +10,7 @@ import { useRunningGame } from "../hooks/use-running-game.hook";
 import { PlayerNameDisplay } from "./player-name-display";
 import { blueColor, greenColor, orangeColor, pinkColor } from "../constants";
 import { usePlaceTile } from "../hooks/use-place-tile.hook";
+import { PlayerTurnDisplay } from "./player-turn-display";
 
 const COL_COUNT = 12;
 
@@ -25,12 +26,18 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
     return <p>"Loading"</p>;
   }
 
-  const { players } = theGame;
+  const { players, turn } = theGame;
   const [{ name: player1Name }, { name: player2Name }] = players;
 
   return (
     <Box>
       <Container>
+        <PlayerTurnDisplay
+          playerName={turn === 0 ? player1Name : player2Name}
+          backgroundColor={turn === 0 ? "white" : pinkColor}
+          borderColor={turn === 0 ? blueColor : pinkColor}
+          color={turn === 0 ? "black" : "white"}
+        />
         <Grid container>
           <Grid xs={2}>
             <PlayerNameDisplay

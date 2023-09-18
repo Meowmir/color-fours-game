@@ -11,7 +11,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { PlayerChip } from "../components/player-chips";
 import { GameTitle, SmallGameTitle } from "../components/game-title";
 import { BoardGrid } from "../components/board-grid";
-import { usePlaceTile } from "../hooks/use-place-tile.hook";
+import { PlayerTurnDisplay } from "../components/player-turn-display";
 
 const StyledDiv = styled("div")({
   marginTop: 30,

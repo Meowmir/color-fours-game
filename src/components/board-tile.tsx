@@ -64,7 +64,7 @@ export function BoardTile({ game, tile, tileIndex, rowIndex }: BoardTileProps) {
       <Item ref={drop}>
         <StyledDot
           style={{
-            backgroundColor: tile?.isP1 ? styleColor : "",
+            backgroundColor: tile?.isP1 ? "" : styleColor,
             borderColor: styleColor,
           }}
         />
