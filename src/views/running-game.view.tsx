@@ -11,6 +11,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { PlayerChip } from "../components/player-chips";
 import { GameTitle, SmallGameTitle } from "../components/game-title";
 import { BoardGrid } from "../components/board-grid";
+import { usePlaceTile } from "../hooks/use-place-tile.hook";
 
 const StyledDiv = styled("div")({
   marginTop: 30,
@@ -32,14 +33,15 @@ const StyledSpinner = styled("img")(({ theme }) => ({
 
 export default function RunningGameView() {
   const { gameId } = useParams();
-  const [theGame, isP1, isLoading] = useRunningGame(gameId!);
+  const [theGame, isP1] = useRunningGame(gameId!);
   const [player2, setPlayer2] = useState("");
   //  const [newGame, isLoading, createGame] = useNewGame();
   const [openAlertEmptyName, setOpenAlertEmptyName] = useState(false);
   const [openAlertShortName, setOpenAlertShortName] = useState(false);
   const [openAlertLongName, setOpenAlertLongName] = useState(false);
 
-  const [updatedGame, isUpdating, addPlayer] = useAddPlayer(gameId);
+  const [, isUpdating, addPlayer] = useAddPlayer(gameId);
+
   const handleClick = useCallback(() => {
     if (player2 === "") {
       setOpenAlertEmptyName(true);

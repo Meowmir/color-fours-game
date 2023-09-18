@@ -4,9 +4,11 @@ import { Paper } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { styled } from "@mui/material/styles";
 
-import { ItemType, ReadTileDTO } from "../my-types";
+import { Game, ItemType, ReadTileDTO } from "../my-types";
+import { usePlaceTile } from "../hooks/use-place-tile.hook";
 
 export type BoardTileProps = {
+  game: Game;
   tile: ReadTileDTO | null;
   tileIndex: number;
   rowIndex: number;
@@ -25,14 +27,17 @@ const StyledDot = styled(Dot)({
   borderWidth: 2,
 });
 
-export function BoardTile({ tile, tileIndex, rowIndex }: BoardTileProps) {
+export function BoardTile({ game, tile, tileIndex, rowIndex }: BoardTileProps) {
+  const [, isUpdating, placeTile] = usePlaceTile(game.gameId);
   const [, drop] = useDrop(() => ({
     accept: ItemType.Chip,
-    drop(item) {
-      console.log(`On row ${rowIndex}, tile ${tileIndex} you dropped`, item);
+    drop(item: { color: string }) {
+      placeTile({ color: item.color, row: rowIndex, column: tileIndex });
     },
     canDrop: () => !tile,
   }));
+
+  // console.log(`On row ${rowIndex}, tile ${tileIndex} you dropped`, item);
 
   return (
     <Grid
@@ -44,7 +49,7 @@ export function BoardTile({ tile, tileIndex, rowIndex }: BoardTileProps) {
       }}
     >
       <Item ref={drop}>
-        <StyledDot />
+        <Dot />
       </Item>
     </Grid>
   );

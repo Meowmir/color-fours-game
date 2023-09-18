@@ -9,6 +9,7 @@ import { Game, ReadTileDTO } from "../my-types";
 import { useRunningGame } from "../hooks/use-running-game.hook";
 import { PlayerNameDisplay } from "./player-name-display";
 import { blueColor, greenColor, orangeColor, pinkColor } from "../constants";
+import { usePlaceTile } from "../hooks/use-place-tile.hook";
 
 const COL_COUNT = 12;
 
@@ -26,8 +27,6 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
 
   const { players } = theGame;
   const [{ name: player1Name }, { name: player2Name }] = players;
-  console.log(player1Name);
-  console.log(player2Name);
 
   return (
     <Box>
@@ -60,7 +59,12 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
               }}
             >
               {game.gameBoard.map((row, index) => (
-                <BoardRow row={row} rowIndex={index} key={index} />
+                <BoardRow
+                  gameId={theGame}
+                  row={row}
+                  rowIndex={index}
+                  key={index}
+                />
               ))}
             </Grid>
           </Grid>
@@ -82,9 +86,11 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
   );
 };
 function BoardRow({
+  gameId,
   row,
   rowIndex,
 }: {
+  gameId: Game;
   row: (ReadTileDTO | null)[];
   rowIndex: number;
 }) {
@@ -92,6 +98,7 @@ function BoardRow({
     <>
       {row.map((tile, index) => (
         <BoardTile
+          game={gameId}
           tile={tile}
           tileIndex={index}
           rowIndex={rowIndex}
