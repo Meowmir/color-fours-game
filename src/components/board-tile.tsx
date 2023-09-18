@@ -6,6 +6,8 @@ import { styled } from "@mui/material/styles";
 
 import { Game, ItemType, ReadTileDTO } from "../my-types";
 import { usePlaceTile } from "../hooks/use-place-tile.hook";
+import { blueColor, greenColor, orangeColor, pinkColor } from "../constants";
+import { PlayerChip } from "./player-chips";
 
 export type BoardTileProps = {
   game: Game;
@@ -37,7 +39,18 @@ export function BoardTile({ game, tile, tileIndex, rowIndex }: BoardTileProps) {
     canDrop: () => !tile,
   }));
 
-  // console.log(`On row ${rowIndex}, tile ${tileIndex} you dropped`, item);
+  // console.log(`On row ${rowIndex}, tile ${tileIndex} you dropped`, item)
+
+  const styleColor =
+    tile?.color === "blue"
+      ? blueColor
+      : tile?.color === "green"
+      ? greenColor
+      : tile?.color === "orange"
+      ? orangeColor
+      : tile?.color === "pink"
+      ? pinkColor
+      : "white";
 
   return (
     <Grid
@@ -49,7 +62,12 @@ export function BoardTile({ game, tile, tileIndex, rowIndex }: BoardTileProps) {
       }}
     >
       <Item ref={drop}>
-        <Dot />
+        <StyledDot
+          style={{
+            backgroundColor: tile?.isP1 ? styleColor : "",
+            borderColor: styleColor,
+          }}
+        />
       </Item>
     </Grid>
   );
