@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Button, Box, Snackbar, Alert } from "@mui/material";
+import { Button, Box, Snackbar, Alert, ButtonProps } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
 
@@ -13,6 +13,13 @@ import { PlayerName } from "../components/player-names";
 import { PlayerChip } from "../components/player-chips";
 import { GameTitle, SmallGameTitle } from "../components/game-title";
 import { BoardGrid } from "../components/board-grid";
+import {
+  darkerGreenColor,
+  darkerOrangeColor,
+  greenColor,
+  orangeColor,
+} from "../constants";
+import { GameOverText } from "../components/game-over-text";
 
 const StyledDiv = styled("div")({
   marginTop: 30,
@@ -32,6 +39,22 @@ const StyledSpinner = styled("img")(({ theme }) => ({
   },
 }));
 
+const StyledInviteButton = styled(Button)<ButtonProps>((theme) => ({
+  color: "black",
+  backgroundColor: greenColor,
+  "&:hover": {
+    backgroundColor: darkerGreenColor,
+  },
+}));
+
+const StyledAddP2Button = styled(Button)<ButtonProps>((theme) => ({
+  color: "black",
+  backgroundColor: orangeColor,
+  "&:hover": {
+    backgroundColor: darkerOrangeColor,
+  },
+}));
+
 export default function RunningGameView() {
   const { gameId } = useParams();
   const [theGame, isP1] = useRunningGame(gameId!);
@@ -40,6 +63,7 @@ export default function RunningGameView() {
   const [openAlertEmptyName, setOpenAlertEmptyName] = useState(false);
   const [openAlertShortName, setOpenAlertShortName] = useState(false);
   const [openAlertLongName, setOpenAlertLongName] = useState(false);
+  const [buttonText, setButtonText] = useState("COPY INVITE LINK");
 
   const [, isUpdating, addPlayer] = useAddPlayer(gameId);
 
@@ -102,9 +126,13 @@ export default function RunningGameView() {
 
         <PlayerName color="warning" label="Player 2" onChange={setPlayer2} />
         <br />
-        <Button variant="contained" color="warning" onClick={handleClick}>
+        <StyledAddP2Button
+          variant="contained"
+          color="warning"
+          onClick={handleClick}
+        >
           ADD PLAYER 2
-        </Button>
+        </StyledAddP2Button>
         <Snackbar
           open={openAlertEmptyName}
           onClose={() => setOpenAlertEmptyName(false)}
@@ -164,13 +192,15 @@ export default function RunningGameView() {
                 }}
               />
               <h2>WAITING FOR PLAYER 2</h2>
-              <Button
+              <StyledInviteButton
                 variant="contained"
-                color="success"
-                onClick={() => copy(currentUrl)}
+                onClick={() => {
+                  copy(currentUrl);
+                  setButtonText("LINK COPIED");
+                }}
               >
-                COPY INVITE LINK
-              </Button>
+                {buttonText}
+              </StyledInviteButton>
             </Box>
           </Grid>
           <Grid xs={2}>
@@ -180,6 +210,16 @@ export default function RunningGameView() {
             <PlayerChip readOnly fill color="pink" />
           </Grid>
         </Grid>
+      </StyledDiv>
+    );
+  }
+
+  if (theGame.state === "GAME_OVER") {
+    return (
+      <StyledDiv>
+        <SmallGameTitle />
+        <BoardGrid game={theGame} />
+        <GameOverText />
       </StyledDiv>
     );
   }

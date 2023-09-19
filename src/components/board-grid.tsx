@@ -11,6 +11,7 @@ import { PlayerNameDisplay } from "./player-name-display";
 import { blueColor, greenColor, orangeColor, pinkColor } from "../constants";
 import { usePlaceTile } from "../hooks/use-place-tile.hook";
 import { PlayerTurnDisplay } from "./player-turn-display";
+import { GameOverText } from "./game-over-text";
 
 const COL_COUNT = 12;
 
@@ -88,7 +89,6 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
             <PlayerChip fill color="pink" />
           </Grid>
         </Grid>
-        <h2>GAME OVER</h2>
       </Container>
     </Box>
   );
