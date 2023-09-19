@@ -22,7 +22,7 @@ export interface BoardProps {
 
 export const BoardGrid: FC<BoardProps> = ({ game }) => {
   const { gameId } = useParams();
-  const [theGame, isLoading] = useRunningGame(gameId!);
+  const [theGame] = useRunningGame(gameId!);
 
   if (!theGame) {
     return <p>"Loading"</p>;
@@ -95,6 +95,7 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
       </Box>
     );
   }
+
   return (
     <Box>
       <Container>

@@ -18,7 +18,7 @@ export function PlayerTurnDisplay({
         backgroundColor: { backgroundColor },
         border: 2,
         borderColor: { borderColor },
-        width: 130,
+        width: 300,
         height: 33,
         borderRadius: 4,
         margin: "auto",
