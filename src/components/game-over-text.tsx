@@ -17,7 +17,7 @@ const Dot = styled("div")({
 export function GameOverText() {
   return (
     <Container style={{ marginTop: 50 }}>
-      <Grid container spacing={0}>
+      <Grid container spacing={0} justifyContent="center" alignItems="center">
         <Grid>
           <Dot
             style={{
