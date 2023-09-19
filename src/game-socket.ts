@@ -12,7 +12,7 @@ if (!token) {
 
 export const gameSocket = io(SOCKET_URL, {
   auth: {
-    "X-API-TOKEN": token ? atob(token) : "",
+    "X-API-TOKEN": token,
   },
 });
 
