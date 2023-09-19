@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
-import React from "react";
 
-export function PlayerTurnDisplay({
+export function WinnerDisplay({
   playerName,
   backgroundColor,
   borderColor,
@@ -18,7 +17,7 @@ export function PlayerTurnDisplay({
         backgroundColor: { backgroundColor },
         border: 2,
         borderColor: { borderColor },
-        width: 130,
+        width: 300,
         height: 33,
         borderRadius: 4,
         margin: "auto",
@@ -31,7 +30,7 @@ export function PlayerTurnDisplay({
         lineHeight: 4,
       }}
     >
-      <p>{playerName}'s turn</p>
+      <p>{playerName} IS THE WINNER!</p>
     </Box>
   );
 }

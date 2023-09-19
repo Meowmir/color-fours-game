@@ -12,6 +12,7 @@ import { blueColor, greenColor, orangeColor, pinkColor } from "../constants";
 import { usePlaceTile } from "../hooks/use-place-tile.hook";
 import { PlayerTurnDisplay } from "./player-turn-display";
 import { GameOverText } from "./game-over-text";
+import { WinnerDisplay } from "./winner-display";
 
 const COL_COUNT = 12;
 
@@ -30,14 +31,78 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
   const { players, turn } = theGame;
   const [{ name: player1Name }, { name: player2Name }] = players;
 
+  if (theGame.state !== "GAME_OVER") {
+    return (
+      <Box>
+        <Container>
+          <PlayerTurnDisplay
+            playerName={turn === 0 ? player1Name : player2Name}
+            backgroundColor={turn === 0 ? "white" : pinkColor}
+            borderColor={turn === 0 ? blueColor : pinkColor}
+            color={turn === 0 ? "black" : "white"}
+          />
+          <Grid container>
+            <Grid xs={2}>
+              <PlayerNameDisplay
+                playerName={player1Name}
+                borderColor={blueColor}
+              />
+              <PlayerChip color="blue" />
+              <PlayerChip color="green" />
+              <PlayerChip color="orange" />
+              <PlayerChip color="pink" />
+            </Grid>
+            <Grid xs={8}>
+              <Grid
+                container
+                columns={COL_COUNT}
+                spacing={1}
+                sx={{
+                  background: "black",
+                  borderWidth: "1px",
+                  borderTop: "solid",
+                  borderLeft: "solid",
+                  "& > div": {
+                    borderBottom: "solid",
+                    borderRight: "solid",
+                  },
+                }}
+              >
+                {game.gameBoard.map((row, index) => (
+                  <BoardRow
+                    gameId={theGame}
+                    row={row}
+                    rowIndex={index}
+                    key={index}
+                  />
+                ))}
+              </Grid>
+            </Grid>
+            <Grid xs={2}>
+              <PlayerNameDisplay
+                playerName={player2Name}
+                backgroundColor={pinkColor}
+                borderColor={pinkColor}
+                color="white"
+              />
+              <PlayerChip fill color="blue" />
+              <PlayerChip fill color="green" />
+              <PlayerChip fill color="orange" />
+              <PlayerChip fill color="pink" />
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+    );
+  }
   return (
     <Box>
       <Container>
-        <PlayerTurnDisplay
-          playerName={turn === 0 ? player1Name : player2Name}
-          backgroundColor={turn === 0 ? "white" : pinkColor}
-          borderColor={turn === 0 ? blueColor : pinkColor}
-          color={turn === 0 ? "black" : "white"}
+        <WinnerDisplay
+          playerName={turn === 1 ? player1Name : player2Name}
+          backgroundColor={turn === 1 ? "white" : pinkColor}
+          borderColor={turn === 1 ? blueColor : pinkColor}
+          color={turn === 1 ? "black" : "white"}
         />
         <Grid container>
           <Grid xs={2}>
@@ -93,6 +158,7 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
     </Box>
   );
 };
+
 function BoardRow({
   gameId,
   row,
