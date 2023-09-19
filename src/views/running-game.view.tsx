@@ -3,11 +3,13 @@ import { useParams } from "react-router-dom";
 
 import { Button, Box, Snackbar, Alert } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Unstable_Grid2";
 
 import { useRunningGame } from "../hooks/use-running-game.hook";
-import { PlayerName } from "../components/player-names";
 import { useAddPlayer } from "../hooks/use-add-player.hook";
-import Grid from "@mui/material/Unstable_Grid2";
+import { useCopyToClipboard } from "../hooks/use-copy-to-clipboard.hook";
+
+import { PlayerName } from "../components/player-names";
 import { PlayerChip } from "../components/player-chips";
 import { GameTitle, SmallGameTitle } from "../components/game-title";
 import { BoardGrid } from "../components/board-grid";
@@ -65,6 +67,9 @@ export default function RunningGameView() {
       addPlayer(player2);
     }
   }, [addPlayer, player2]);
+
+  const currentUrl = window.location.href;
+  const [value, copy] = useCopyToClipboard();
 
   if (!theGame) {
     return <p>LOADING</p>;
@@ -159,7 +164,11 @@ export default function RunningGameView() {
                 }}
               />
               <h2>WAITING FOR PLAYER 2</h2>
-              <Button variant="contained" color="success">
+              <Button
+                variant="contained"
+                color="success"
+                onClick={() => copy(currentUrl)}
+              >
                 COPY INVITE LINK
               </Button>
             </Box>

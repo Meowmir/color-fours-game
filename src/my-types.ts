@@ -26,3 +26,7 @@ export type ReadPlayerDTO = {
 export const ItemType = {
   Chip: "chip",
 };
+
+export type CopiedValue = string | null;
+
+export type CopyFn = (text: string) => Promise<boolean>;
