@@ -88,6 +88,7 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
             <PlayerChip fill color="pink" />
           </Grid>
         </Grid>
+        <h2>GAME OVER</h2>
       </Container>
     </Box>
   );
