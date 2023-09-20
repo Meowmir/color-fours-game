@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { Game, PlaceTileDTO } from "../my-types";
-import { gameSocket } from "../game-socket";
+import { emitMessage } from "../game-socket";
 import { getSessionId } from "../utils/get-player-id.util";
 
 export function usePlaceTile(
@@ -15,13 +15,12 @@ export function usePlaceTile(
 
       setIsLoading(true);
 
-      return gameSocket
-        .emitWithAck("game", {
-          type: "PLACE_TILE",
-          gameId,
-          ...tile,
-          sessionId: getSessionId(),
-        })
+      return emitMessage({
+        type: "PLACE_TILE",
+        gameId,
+        ...tile,
+        sessionId: getSessionId(),
+      })
         .then(setUpdateGame)
         .catch((err) =>
           console.error(`Failed placing tile with msg: ${err.message}`, err),

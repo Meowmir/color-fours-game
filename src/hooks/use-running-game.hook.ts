@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Game } from "../my-types";
-import { gameSocket } from "../game-socket";
+import { emitMessage } from "../game-socket";
 import { getSessionId } from "../utils/get-player-id.util";
 
 export function useRunningGame(
@@ -15,12 +15,11 @@ export function useRunningGame(
     setTheGame(null);
 
     // get initial state from server
-    gameSocket
-      .emitWithAck("game", {
-        type: "GET_GAME",
-        gameId,
-        sessionId: getSessionId(),
-      })
+    emitMessage({
+      type: "GET_GAME",
+      gameId,
+      sessionId: getSessionId(),
+    })
       .then((game) => {
         setTheGame(game);
         setIsP1(!!game.isP1);
