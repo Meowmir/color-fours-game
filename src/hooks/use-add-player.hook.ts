@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-import { gameSocket } from "../game-socket";
+import { emitMessage } from "../game-socket";
 import { Game } from "../my-types";
 import { getSessionId } from "../utils/get-player-id.util";
 
@@ -16,12 +16,11 @@ export function useAddPlayer(
 
       setIsLoading(true);
 
-      return gameSocket
-        .emitWithAck("game", {
-          type: "ADD_PLAYER",
-          gameId,
-          player: { name: player, sessionId: getSessionId() },
-        })
+      return emitMessage({
+        type: "ADD_PLAYER",
+        gameId,
+        player: { name: player, sessionId: getSessionId() },
+      })
         .then(setUpdateGame)
         .catch((err) =>
           console.error(`Failed adding player with msg: ${err.message}`, err),
