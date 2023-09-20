@@ -1,10 +1,8 @@
-import { useState } from "react";
-import { CopiedValue, CopyFn } from "../my-types";
+import { useCallback } from "react";
+import { CopyFn } from "../my-types";
 
-export function useCopyToClipboard(): [CopiedValue, CopyFn] {
-  const [copiedText, setCopiedText] = useState<CopiedValue>(null);
-
-  const copy: CopyFn = async (text) => {
+export function useCopyToClipboard(): CopyFn {
+  return useCallback(async (text) => {
     if (!navigator.clipboard) {
       console.warn("Clipboard not supported.");
       return false;
@@ -12,13 +10,10 @@ export function useCopyToClipboard(): [CopiedValue, CopyFn] {
 
     try {
       await navigator.clipboard.writeText(text);
-      setCopiedText(text);
       return true;
     } catch (error) {
       console.warn("Copy failed", error);
-      setCopiedText(null);
       return false;
     }
-  };
-  return [copiedText, copy];
+  }, []);
 }

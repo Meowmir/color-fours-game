@@ -8,13 +8,9 @@ import { BoardTile } from "./board-tile";
 import { Game, ReadTileDTO } from "../my-types";
 import { useRunningGame } from "../hooks/use-running-game.hook";
 import { PlayerNameDisplay } from "./player-name-display";
-import { blueColor, greenColor, orangeColor, pinkColor } from "../constants";
-import { usePlaceTile } from "../hooks/use-place-tile.hook";
-import { PlayerTurnDisplay } from "./player-turn-display";
-import { GameOverText } from "./game-over-text";
+import { blueColor, pinkColor, COL_COUNT } from "../constants";
 import { WinnerDisplay } from "./winner-display";
-
-const COL_COUNT = 12;
+import { RunningGameBoard } from "./running-game-board";
 
 export interface BoardProps {
   game: Game;
@@ -33,66 +29,12 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
 
   if (theGame.state !== "GAME_OVER") {
     return (
-      <Box>
-        <Container>
-          <PlayerTurnDisplay
-            playerName={turn === 0 ? player1Name : player2Name}
-            backgroundColor={turn === 0 ? "white" : pinkColor}
-            borderColor={turn === 0 ? blueColor : pinkColor}
-            color={turn === 0 ? "black" : "white"}
-          />
-          <Grid container>
-            <Grid xs={2}>
-              <PlayerNameDisplay
-                playerName={player1Name}
-                borderColor={blueColor}
-              />
-              <PlayerChip color="blue" />
-              <PlayerChip color="green" />
-              <PlayerChip color="orange" />
-              <PlayerChip color="pink" />
-            </Grid>
-            <Grid xs={8}>
-              <Grid
-                container
-                columns={COL_COUNT}
-                spacing={1}
-                sx={{
-                  background: "black",
-                  borderWidth: "1px",
-                  borderTop: "solid",
-                  borderLeft: "solid",
-                  "& > div": {
-                    borderBottom: "solid",
-                    borderRight: "solid",
-                  },
-                }}
-              >
-                {game.gameBoard.map((row, index) => (
-                  <BoardRow
-                    gameId={theGame}
-                    row={row}
-                    rowIndex={index}
-                    key={index}
-                  />
-                ))}
-              </Grid>
-            </Grid>
-            <Grid xs={2}>
-              <PlayerNameDisplay
-                playerName={player2Name}
-                backgroundColor={pinkColor}
-                borderColor={pinkColor}
-                color="white"
-              />
-              <PlayerChip fill color="blue" />
-              <PlayerChip fill color="green" />
-              <PlayerChip fill color="orange" />
-              <PlayerChip fill color="pink" />
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
+      <RunningGameBoard
+        theGame={theGame}
+        player1Name={player1Name}
+        player2Name={player2Name}
+        turn={turn}
+      />
     );
   }
 
