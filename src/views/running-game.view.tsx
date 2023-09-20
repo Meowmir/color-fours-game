@@ -93,7 +93,7 @@ export default function RunningGameView() {
   }, [addPlayer, player2]);
 
   const currentUrl = window.location.href;
-  const [value, copy] = useCopyToClipboard();
+  const copy = useCopyToClipboard();
 
   if (!theGame) {
     return <p>LOADING</p>;
