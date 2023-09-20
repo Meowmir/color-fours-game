@@ -2,6 +2,7 @@ import { styled } from "@mui/material/styles";
 import React from "react";
 import { useDrag } from "react-dnd";
 import { ItemType } from "../my-types";
+import { blueColor, greenColor, orangeColor, pinkColor } from "../constants";
 
 // creating a "base dot"
 const Dot = styled("div")({
@@ -17,11 +18,6 @@ const StyledDot = styled(Dot)({
   borderStyle: "solid",
   borderWidth: 2,
 });
-
-const blueColor = "#00D6F2";
-const greenColor = "#90EA00";
-const orangeColor = "#FFB100";
-const pinkColor = "#EA0090";
 
 export function PlayerChip({
   fill,
@@ -62,6 +58,7 @@ export function PlayerChip({
           borderColor: styleColor,
           opacity: isDragging ? 0.33 : 1,
           cursor: "move",
+          marginBottom: 40,
         }}
       ></StyledDot>
     </>

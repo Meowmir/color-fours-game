@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Alert, Button, Container, Snackbar } from "@mui/material";
+import { Alert, Button, ButtonProps, Container, Snackbar } from "@mui/material";
 
 import { PlayerChip } from "../components/player-chips";
-import { GameTitle } from "../components/game-title";
-import { PlayerName } from "../components/player-names";
+import { GameTitle } from "../components/displays/game-title";
+import { PlayerName } from "../components/input-player-names";
 import { useNewGame } from "../hooks/use-new-game.hook";
+import { styled } from "@mui/material/styles";
+import { darkerPinkColor, pinkColor } from "../constants";
+
+const StyledNewGameButton = styled(Button)<ButtonProps>((theme) => ({
+  color: "white",
+  backgroundColor: pinkColor,
+  "&:hover": {
+    backgroundColor: darkerPinkColor,
+  },
+}));
 
 export default function FrontView() {
   const navigate = useNavigate();
@@ -14,6 +24,7 @@ export default function FrontView() {
   const [newGame, isLoading, createGame] = useNewGame();
   const [openAlertEmptyName, setOpenAlertEmptyName] = React.useState(false);
   const [openAlertShortName, setOpenAlertShortName] = React.useState(false);
+  const [openAlertLongName, setOpenAlertLongName] = React.useState(false);
 
   const handleClick = () => {
     if (player1 === "") {
@@ -22,10 +33,16 @@ export default function FrontView() {
         setOpenAlertEmptyName(false);
       }, 3000);
     }
-    if (player1 != "" && player1.length < 3) {
+    if (player1 !== "" && player1.length < 3) {
       setOpenAlertShortName(true);
       setTimeout(() => {
         setOpenAlertShortName(false);
+      }, 3000);
+    }
+    if (player1 !== "" && player1.length > 10) {
+      setOpenAlertLongName(true);
+      setTimeout(() => {
+        setOpenAlertLongName(false);
       }, 3000);
     } else {
       createGame(player1);
@@ -40,7 +57,8 @@ export default function FrontView() {
 
   return (
     <>
-      <Container>
+      <p style={{ opacity: 0.5 }}>Created by Nora Disewji</p>
+      <Container style={{ marginTop: 10 }}>
         <Grid container spacing={0}>
           <Grid xs={2}>
             <PlayerChip readOnly color="blue" />
@@ -61,9 +79,13 @@ export default function FrontView() {
       </Container>
       <PlayerName label="Player 1" color="secondary" onChange={setPlayer1} />
       <br />
-      <Button variant="contained" color="secondary" onClick={handleClick}>
+      <StyledNewGameButton
+        variant="contained"
+        color="secondary"
+        onClick={handleClick}
+      >
         CREATE NEW GAME
-      </Button>
+      </StyledNewGameButton>
       <Snackbar
         open={openAlertEmptyName}
         onClose={() => setOpenAlertEmptyName(false)}
@@ -80,6 +102,15 @@ export default function FrontView() {
       >
         <Alert severity="error" sx={{ width: "100%" }}>
           Player name can't be less than 3 characters.
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={openAlertLongName}
+        onClose={() => setOpenAlertShortName(false)}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert severity="error" sx={{ width: "100%" }}>
+          Player name can't be more than 10 characters.
         </Alert>
       </Snackbar>
     </>

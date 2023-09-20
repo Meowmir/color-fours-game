@@ -7,9 +7,16 @@ export type Game = {
   isP1?: boolean;
 };
 
+export type PlaceTileDTO = {
+  color: string;
+  row: number;
+  column: number;
+};
+
 export type ReadTileDTO = {
   color: string;
   playerName: string;
+  isP1: boolean;
 };
 
 export type ReadPlayerDTO = {
@@ -19,3 +26,7 @@ export type ReadPlayerDTO = {
 export const ItemType = {
   Chip: "chip",
 };
+
+export type CopiedValue = string | null;
+
+export type CopyFn = (text: string) => Promise<boolean>;
