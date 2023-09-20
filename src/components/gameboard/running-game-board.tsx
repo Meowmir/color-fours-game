@@ -1,12 +1,12 @@
 import { Box, Container } from "@mui/material";
-import { PlayerTurnDisplay } from "./displays/player-turn-display";
-import { blueColor, pinkColor, COL_COUNT } from "../constants";
+import { PlayerTurnDisplay } from "../displays/player-turn-display";
+import { blueColor, pinkColor, COL_COUNT } from "../../constants";
 import Grid from "@mui/material/Unstable_Grid2";
-import { PlayerNameDisplay } from "./displays/player-name-display";
-import { PlayerChip } from "./player-chips";
+import { PlayerNameDisplay } from "../displays/player-name-display";
+import { PlayerChip } from "../player-chips";
 import React from "react";
-import { Game } from "../my-types";
-import { BoardRow } from "./gameboard/board-row";
+import { Game } from "../../my-types";
+import { BoardRow } from "./board-row";
 
 export function RunningGameBoard({
   theGame,

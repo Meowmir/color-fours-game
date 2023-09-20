@@ -4,8 +4,8 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { Alert, Button, ButtonProps, Container, Snackbar } from "@mui/material";
 
 import { PlayerChip } from "../components/player-chips";
-import { GameTitle } from "../components/game-title";
-import { PlayerName } from "../components/player-names";
+import { GameTitle } from "../components/displays/game-title";
+import { PlayerName } from "../components/input-player-names";
 import { useNewGame } from "../hooks/use-new-game.hook";
 import { styled } from "@mui/material/styles";
 import { darkerPinkColor, pinkColor } from "../constants";

@@ -4,10 +4,10 @@ import { Paper } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { styled } from "@mui/material/styles";
 
-import { Game, ItemType, ReadTileDTO } from "../my-types";
-import { usePlaceTile } from "../hooks/use-place-tile.hook";
-import { blueColor, greenColor, orangeColor, pinkColor } from "../constants";
-import { PlayerChip } from "./player-chips";
+import { Game, ItemType, ReadTileDTO } from "../../my-types";
+import { usePlaceTile } from "../../hooks/use-place-tile.hook";
+import { blueColor, greenColor, orangeColor, pinkColor } from "../../constants";
+import { PlayerChip } from "../player-chips";
 
 export type BoardTileProps = {
   game: Game;

@@ -9,17 +9,17 @@ import { useRunningGame } from "../hooks/use-running-game.hook";
 import { useAddPlayer } from "../hooks/use-add-player.hook";
 import { useCopyToClipboard } from "../hooks/use-copy-to-clipboard.hook";
 
-import { PlayerName } from "../components/player-names";
+import { PlayerName } from "../components/input-player-names";
 import { PlayerChip } from "../components/player-chips";
-import { GameTitle, SmallGameTitle } from "../components/game-title";
-import { BoardGrid } from "../components/board-grid";
+import { GameTitle, SmallGameTitle } from "../components/displays/game-title";
+import { BoardGrid } from "../components/gameboard/board-grid";
 import {
   darkerGreenColor,
   darkerOrangeColor,
   greenColor,
   orangeColor,
 } from "../constants";
-import { GameOverText } from "../components/game-over-text";
+import { GameOverText } from "../components/displays/game-over-text";
 
 const StyledDiv = styled("div")({
   marginTop: 30,

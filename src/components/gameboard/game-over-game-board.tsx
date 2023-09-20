@@ -1,12 +1,12 @@
 import { Box, Container } from "@mui/material";
-import { WinnerDisplay } from "./displays/winner-display";
-import { blueColor, COL_COUNT, pinkColor } from "../constants";
+import { WinnerDisplay } from "../displays/winner-display";
+import { blueColor, COL_COUNT, pinkColor } from "../../constants";
 import Grid from "@mui/material/Unstable_Grid2";
-import { PlayerNameDisplay } from "./displays/player-name-display";
-import { PlayerChip } from "./player-chips";
-import { BoardRow } from "./gameboard/board-row";
+import { PlayerNameDisplay } from "../displays/player-name-display";
+import { PlayerChip } from "../player-chips";
+import { BoardRow } from "./board-row";
 import React from "react";
-import { Game } from "../my-types";
+import { Game } from "../../my-types";
 
 export function GameOverGameBoard({
   theGame,

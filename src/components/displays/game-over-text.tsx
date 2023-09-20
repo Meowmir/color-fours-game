@@ -1,4 +1,4 @@
-import { blueColor, greenColor, orangeColor, pinkColor } from "../constants";
+import { blueColor, greenColor, orangeColor, pinkColor } from "../../constants";
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Container } from "@mui/material";
