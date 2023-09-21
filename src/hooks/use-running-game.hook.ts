@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Game } from "../my-types";
-import { emitMessage } from "../game-socket";
+import { emitMessage, gameSocket } from "../game-socket";
 import { getSessionId } from "../utils/get-player-id.util";
 
 export function useRunningGame(

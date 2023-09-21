@@ -3,7 +3,7 @@ import { PlayerTurnDisplay } from "../displays/player-turn-display";
 import { blueColor, pinkColor, COL_COUNT } from "../../constants";
 import Grid from "@mui/material/Unstable_Grid2";
 import { PlayerNameDisplay } from "../displays/player-name-display";
-import { PlayerChip } from "../player-chips";
+import { Player2Chips, PlayerChips } from "../player-chips";
 import React from "react";
 import { Game } from "../../my-types";
 import { BoardRow } from "./board-row";
@@ -34,10 +34,10 @@ export function RunningGameBoard({
               playerName={player1Name}
               borderColor={blueColor}
             />
-            <PlayerChip color="blue" />
-            <PlayerChip color="green" />
-            <PlayerChip color="orange" />
-            <PlayerChip color="pink" />
+            <PlayerChips theGame={theGame} color="blue" />
+            <PlayerChips theGame={theGame} color="green" />
+            <PlayerChips theGame={theGame} color="orange" />
+            <PlayerChips theGame={theGame} color="pink" />
           </Grid>
           <Grid xs={8}>
             <Grid
@@ -45,6 +45,7 @@ export function RunningGameBoard({
               columns={COL_COUNT}
               spacing={1}
               sx={{
+                margin: 1,
                 background: "black",
                 borderWidth: "1px",
                 borderTop: "solid",
@@ -72,10 +73,10 @@ export function RunningGameBoard({
               borderColor={pinkColor}
               color="white"
             />
-            <PlayerChip fill color="blue" />
-            <PlayerChip fill color="green" />
-            <PlayerChip fill color="orange" />
-            <PlayerChip fill color="pink" />
+            <Player2Chips theGame={theGame} fill color="blue" />
+            <Player2Chips theGame={theGame} fill color="green" />
+            <Player2Chips theGame={theGame} fill color="orange" />
+            <Player2Chips theGame={theGame} fill color="pink" />
           </Grid>
         </Grid>
       </Container>

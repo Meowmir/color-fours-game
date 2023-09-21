@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Alert, Button, ButtonProps, Container, Snackbar } from "@mui/material";
 
-import { PlayerChip } from "../components/player-chips";
 import { GameTitle } from "../components/displays/game-title";
 import { PlayerName } from "../components/input-player-names";
 import { useNewGame } from "../hooks/use-new-game.hook";
 import { styled } from "@mui/material/styles";
 import { darkerPinkColor, pinkColor } from "../constants";
+import { Chip } from "../components/chip";
 
 const StyledNewGameButton = styled(Button)<ButtonProps>((theme) => ({
   color: "white",
@@ -61,19 +61,19 @@ export default function FrontView() {
       <Container style={{ marginTop: 10 }}>
         <Grid container spacing={0}>
           <Grid xs={2}>
-            <PlayerChip readOnly color="blue" />
-            <PlayerChip readOnly color="green" />
-            <PlayerChip readOnly color="orange" />
-            <PlayerChip readOnly color="pink" />
+            <Chip color="blue" />
+            <Chip color="green" />
+            <Chip color="orange" />
+            <Chip color="pink" />
           </Grid>
           <Grid xs={8}>
             <GameTitle />
           </Grid>
           <Grid xs={2}>
-            <PlayerChip readOnly fill color="blue" />
-            <PlayerChip readOnly fill color="green" />
-            <PlayerChip readOnly fill color="orange" />
-            <PlayerChip readOnly fill color="pink" />
+            <Chip fill color="blue" />
+            <Chip fill color="green" />
+            <Chip fill color="orange" />
+            <Chip fill color="pink" />
           </Grid>
         </Grid>
       </Container>
