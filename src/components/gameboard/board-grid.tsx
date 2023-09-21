@@ -8,9 +8,10 @@ import { GameOverGameBoard } from "./game-over-game-board";
 
 export interface BoardProps {
   game: Game;
+  isP1?: boolean;
 }
 
-export const BoardGrid: FC<BoardProps> = ({ game }) => {
+export const BoardGrid: FC<BoardProps> = ({ game, isP1 }) => {
   const { gameId } = useParams();
   const [theGame] = useRunningGame(gameId!);
 
@@ -28,6 +29,7 @@ export const BoardGrid: FC<BoardProps> = ({ game }) => {
         player1Name={player1Name}
         player2Name={player2Name}
         turn={turn}
+        isP1={isP1}
       />
     );
   }

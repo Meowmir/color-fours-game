@@ -10,7 +10,6 @@ import { useAddPlayer } from "../hooks/use-add-player.hook";
 import { useCopyToClipboard } from "../hooks/use-copy-to-clipboard.hook";
 
 import { PlayerName } from "../components/input-player-names";
-import { PlayerChip } from "../components/player-chips";
 import { GameTitle, SmallGameTitle } from "../components/displays/game-title";
 import { BoardGrid } from "../components/gameboard/board-grid";
 import {
@@ -20,6 +19,7 @@ import {
   orangeColor,
 } from "../constants";
 import { GameOverText } from "../components/displays/game-over-text";
+import { Chip } from "../components/chip";
 
 const StyledDiv = styled("div")({
   marginTop: 30,
@@ -108,19 +108,19 @@ export default function RunningGameView() {
       <StyledDiv>
         <Grid container spacing={0}>
           <Grid xs={2}>
-            <PlayerChip readOnly color="blue" />
-            <PlayerChip readOnly color="green" />
-            <PlayerChip readOnly color="orange" />
-            <PlayerChip readOnly color="pink" />
+            <Chip color="blue" />
+            <Chip color="green" />
+            <Chip color="orange" />
+            <Chip color="pink" />
           </Grid>
           <Grid xs={8}>
             <GameTitle />
           </Grid>
           <Grid xs={2}>
-            <PlayerChip readOnly fill color="blue" />
-            <PlayerChip readOnly fill color="green" />
-            <PlayerChip readOnly fill color="orange" />
-            <PlayerChip readOnly fill color="pink" />
+            <Chip fill color="blue" />
+            <Chip fill color="green" />
+            <Chip fill color="orange" />
+            <Chip fill color="pink" />
           </Grid>
         </Grid>
 
@@ -169,10 +169,10 @@ export default function RunningGameView() {
       <StyledDiv>
         <Grid container spacing={0}>
           <Grid xs={2}>
-            <PlayerChip readOnly color="blue" />
-            <PlayerChip readOnly color="green" />
-            <PlayerChip readOnly color="orange" />
-            <PlayerChip readOnly color="pink" />
+            <Chip color="blue" />
+            <Chip color="green" />
+            <Chip color="orange" />
+            <Chip color="pink" />
           </Grid>
           <Grid xs={8}>
             <Box>
@@ -204,10 +204,10 @@ export default function RunningGameView() {
             </Box>
           </Grid>
           <Grid xs={2}>
-            <PlayerChip readOnly fill color="blue" />
-            <PlayerChip readOnly fill color="green" />
-            <PlayerChip readOnly fill color="orange" />
-            <PlayerChip readOnly fill color="pink" />
+            <Chip fill color="blue" />
+            <Chip fill color="green" />
+            <Chip fill color="orange" />
+            <Chip fill color="pink" />
           </Grid>
         </Grid>
       </StyledDiv>
@@ -227,7 +227,7 @@ export default function RunningGameView() {
   return (
     <StyledDiv>
       <SmallGameTitle />
-      <BoardGrid game={theGame} />
+      <BoardGrid game={theGame} isP1={isP1} />
     </StyledDiv>
   );
 }

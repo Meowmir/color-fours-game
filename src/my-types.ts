@@ -21,6 +21,8 @@ export type ReadTileDTO = {
 
 export type ReadPlayerDTO = {
   name: string;
+
+  placeableTiles: string[];
 };
 
 export const ItemType = {

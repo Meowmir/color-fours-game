@@ -2,23 +2,26 @@ import { Box, Container } from "@mui/material";
 import { PlayerTurnDisplay } from "../displays/player-turn-display";
 import { blueColor, pinkColor, COL_COUNT } from "../../constants";
 import Grid from "@mui/material/Unstable_Grid2";
-import { PlayerNameDisplay } from "../displays/player-name-display";
-import { PlayerChip } from "../player-chips";
 import React from "react";
 import { Game } from "../../my-types";
 import { BoardRow } from "./board-row";
+import { PlayerArea } from "./player-area";
 
 export function RunningGameBoard({
   theGame,
   player1Name,
   player2Name,
   turn,
+  isP1,
 }: {
   theGame: Game;
   player1Name: string;
   player2Name: string;
   turn: number;
+  isP1?: boolean;
 }) {
+  const [player1, player2] = theGame.players;
+
   return (
     <Box>
       <Container>
@@ -30,14 +33,7 @@ export function RunningGameBoard({
         />
         <Grid container>
           <Grid xs={2}>
-            <PlayerNameDisplay
-              playerName={player1Name}
-              borderColor={blueColor}
-            />
-            <PlayerChip color="blue" />
-            <PlayerChip color="green" />
-            <PlayerChip color="orange" />
-            <PlayerChip color="pink" />
+            <PlayerArea player={player1} isP1 isCurrentPlayer={isP1} />
           </Grid>
           <Grid xs={8}>
             <Grid
@@ -45,6 +41,7 @@ export function RunningGameBoard({
               columns={COL_COUNT}
               spacing={1}
               sx={{
+                margin: 1,
                 background: "black",
                 borderWidth: "1px",
                 borderTop: "solid",
@@ -66,16 +63,7 @@ export function RunningGameBoard({
             </Grid>
           </Grid>
           <Grid xs={2}>
-            <PlayerNameDisplay
-              playerName={player2Name}
-              backgroundColor={pinkColor}
-              borderColor={pinkColor}
-              color="white"
-            />
-            <PlayerChip fill color="blue" />
-            <PlayerChip fill color="green" />
-            <PlayerChip fill color="orange" />
-            <PlayerChip fill color="pink" />
+            <PlayerArea player={player2} isCurrentPlayer={!isP1} />
           </Grid>
         </Grid>
       </Container>

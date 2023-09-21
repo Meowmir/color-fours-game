@@ -7,7 +7,6 @@ import { styled } from "@mui/material/styles";
 import { Game, ItemType, ReadTileDTO } from "../../my-types";
 import { usePlaceTile } from "../../hooks/use-place-tile.hook";
 import { blueColor, greenColor, orangeColor, pinkColor } from "../../constants";
-import { PlayerChip } from "../player-chips";
 
 export type BoardTileProps = {
   game: Game;
@@ -30,27 +29,26 @@ const StyledDot = styled(Dot)({
 });
 
 export function BoardTile({ game, tile, tileIndex, rowIndex }: BoardTileProps) {
-  const [, isUpdating, placeTile] = usePlaceTile(game.gameId);
+  const [, , placeTile] = usePlaceTile(game.gameId);
   const [, drop] = useDrop(() => ({
     accept: ItemType.Chip,
     drop(item: { color: string }) {
       placeTile({ color: item.color, row: rowIndex, column: tileIndex });
+      console.log(`On row ${rowIndex}, tile ${tileIndex} you dropped`, item);
     },
     canDrop: () => !tile,
   }));
 
-  // console.log(`On row ${rowIndex}, tile ${tileIndex} you dropped`, item)
-
   const styleColor =
-    tile?.color === "blue"
+    tile?.color === "BLUE"
       ? blueColor
-      : tile?.color === "green"
+      : tile?.color === "GREEN"
       ? greenColor
-      : tile?.color === "orange"
+      : tile?.color === "ORANGE"
       ? orangeColor
-      : tile?.color === "pink"
+      : tile?.color === "PINK"
       ? pinkColor
-      : "white";
+      : "transparent";
 
   return (
     <Grid

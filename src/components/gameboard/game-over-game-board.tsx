@@ -3,10 +3,11 @@ import { WinnerDisplay } from "../displays/winner-display";
 import { blueColor, COL_COUNT, pinkColor } from "../../constants";
 import Grid from "@mui/material/Unstable_Grid2";
 import { PlayerNameDisplay } from "../displays/player-name-display";
-import { PlayerChip } from "../player-chips";
+import { PlayerChips } from "../player-chips";
 import { BoardRow } from "./board-row";
 import React from "react";
 import { Game } from "../../my-types";
+import { PlayerArea } from "./player-area";
 
 export function GameOverGameBoard({
   theGame,
@@ -19,6 +20,8 @@ export function GameOverGameBoard({
   player2Name: string;
   turn: number;
 }) {
+  const [player1, player2] = theGame.players;
+
   return (
     <Box>
       <Container>
@@ -30,14 +33,7 @@ export function GameOverGameBoard({
         />
         <Grid container>
           <Grid xs={2}>
-            <PlayerNameDisplay
-              playerName={player1Name}
-              borderColor={blueColor}
-            />
-            <PlayerChip color="blue" />
-            <PlayerChip color="green" />
-            <PlayerChip color="orange" />
-            <PlayerChip color="pink" />
+            <PlayerArea player={player1} isP1 gameOver />
           </Grid>
           <Grid xs={8}>
             <Grid
@@ -66,16 +62,7 @@ export function GameOverGameBoard({
             </Grid>
           </Grid>
           <Grid xs={2}>
-            <PlayerNameDisplay
-              playerName={player2Name}
-              backgroundColor={pinkColor}
-              borderColor={pinkColor}
-              color="white"
-            />
-            <PlayerChip fill color="blue" />
-            <PlayerChip fill color="green" />
-            <PlayerChip fill color="orange" />
-            <PlayerChip fill color="pink" />
+            <PlayerArea player={player2} gameOver />
           </Grid>
         </Grid>
       </Container>
