@@ -1,10 +1,7 @@
 import { io } from "socket.io-client";
 import { createContext } from "react";
-import { getSessionId } from "./utils/get-player-id.util";
 
-// http://localhost:3001
-const SOCKET_URL = "http://localhost:3001";
-//const SOCKET_URL = "http://64.225.83.55";
+const SOCKET_URL = process.env.REACT_APP_HOST || "http://64.225.83.55";
 const token = process.env.REACT_APP_API_KEY || "";
 
 if (!token) {
