@@ -14,3 +14,5 @@ export const darkerPinkColor = "#cc007e";
 
 // COLUMNS COUNT
 export const COL_COUNT = 12;
+
+export const ALL_TILE_COLORS = ["BLUE", "GREEN", "ORANGE", "PINK"];

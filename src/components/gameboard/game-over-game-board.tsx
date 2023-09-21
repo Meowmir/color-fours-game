@@ -7,6 +7,7 @@ import { PlayerChips } from "../player-chips";
 import { BoardRow } from "./board-row";
 import React from "react";
 import { Game } from "../../my-types";
+import { PlayerArea } from "./player-area";
 
 export function GameOverGameBoard({
   theGame,
@@ -19,6 +20,8 @@ export function GameOverGameBoard({
   player2Name: string;
   turn: number;
 }) {
+  const [player1, player2] = theGame.players;
+
   return (
     <Box>
       <Container>
@@ -30,14 +33,7 @@ export function GameOverGameBoard({
         />
         <Grid container>
           <Grid xs={2}>
-            <PlayerNameDisplay
-              playerName={player1Name}
-              borderColor={blueColor}
-            />
-            <PlayerChips theGame={theGame} color="blue" />
-            <PlayerChips theGame={theGame} color="green" />
-            <PlayerChips theGame={theGame} color="orange" />
-            <PlayerChips theGame={theGame} color="pink" />
+            <PlayerArea player={player1} isP1 gameOver />
           </Grid>
           <Grid xs={8}>
             <Grid
@@ -66,16 +62,7 @@ export function GameOverGameBoard({
             </Grid>
           </Grid>
           <Grid xs={2}>
-            <PlayerNameDisplay
-              playerName={player2Name}
-              backgroundColor={pinkColor}
-              borderColor={pinkColor}
-              color="white"
-            />
-            <PlayerChips theGame={theGame} fill color="blue" />
-            <PlayerChips theGame={theGame} fill color="green" />
-            <PlayerChips theGame={theGame} fill color="orange" />
-            <PlayerChips theGame={theGame} fill color="pink" />
+            <PlayerArea player={player2} gameOver />
           </Grid>
         </Grid>
       </Container>

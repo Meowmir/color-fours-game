@@ -227,7 +227,7 @@ export default function RunningGameView() {
   return (
     <StyledDiv>
       <SmallGameTitle />
-      <BoardGrid game={theGame} />
+      <BoardGrid game={theGame} isP1={isP1} />
     </StyledDiv>
   );
 }

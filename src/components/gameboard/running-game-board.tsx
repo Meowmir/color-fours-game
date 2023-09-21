@@ -2,23 +2,26 @@ import { Box, Container } from "@mui/material";
 import { PlayerTurnDisplay } from "../displays/player-turn-display";
 import { blueColor, pinkColor, COL_COUNT } from "../../constants";
 import Grid from "@mui/material/Unstable_Grid2";
-import { PlayerNameDisplay } from "../displays/player-name-display";
-import { Player2Chips, PlayerChips } from "../player-chips";
 import React from "react";
 import { Game } from "../../my-types";
 import { BoardRow } from "./board-row";
+import { PlayerArea } from "./player-area";
 
 export function RunningGameBoard({
   theGame,
   player1Name,
   player2Name,
   turn,
+  isP1,
 }: {
   theGame: Game;
   player1Name: string;
   player2Name: string;
   turn: number;
+  isP1?: boolean;
 }) {
+  const [player1, player2] = theGame.players;
+
   return (
     <Box>
       <Container>
@@ -30,14 +33,7 @@ export function RunningGameBoard({
         />
         <Grid container>
           <Grid xs={2}>
-            <PlayerNameDisplay
-              playerName={player1Name}
-              borderColor={blueColor}
-            />
-            <PlayerChips theGame={theGame} color="blue" />
-            <PlayerChips theGame={theGame} color="green" />
-            <PlayerChips theGame={theGame} color="orange" />
-            <PlayerChips theGame={theGame} color="pink" />
+            <PlayerArea player={player1} isP1 isCurrentPlayer={isP1} />
           </Grid>
           <Grid xs={8}>
             <Grid
@@ -67,16 +63,7 @@ export function RunningGameBoard({
             </Grid>
           </Grid>
           <Grid xs={2}>
-            <PlayerNameDisplay
-              playerName={player2Name}
-              backgroundColor={pinkColor}
-              borderColor={pinkColor}
-              color="white"
-            />
-            <Player2Chips theGame={theGame} fill color="blue" />
-            <Player2Chips theGame={theGame} fill color="green" />
-            <Player2Chips theGame={theGame} fill color="orange" />
-            <Player2Chips theGame={theGame} fill color="pink" />
+            <PlayerArea player={player2} isCurrentPlayer={!isP1} />
           </Grid>
         </Grid>
       </Container>
