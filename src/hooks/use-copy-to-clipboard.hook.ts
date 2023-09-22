@@ -1,8 +1,6 @@
 import { useCallback } from "react";
-import copy from "copy-to-clipboard";
-import { CopyFn } from "../my-types";
-
-export function useCopyToClipboard(): CopyFn {
+/*
+export function useCopyToClipboard(): (text: string) => Promise<boolean> {
   return useCallback(async (text) => {
     try {
       copy(text);
@@ -13,3 +11,6 @@ export function useCopyToClipboard(): CopyFn {
     }
   }, []);
 }
+
+
+ */
