@@ -1,15 +1,11 @@
 import { useCallback } from "react";
+import copy from "copy-to-clipboard";
 import { CopyFn } from "../my-types";
 
 export function useCopyToClipboard(): CopyFn {
   return useCallback(async (text) => {
-    if (!navigator.clipboard) {
-      console.warn("Clipboard not supported.");
-      return false;
-    }
-
     try {
-      await navigator.clipboard.writeText(text);
+      copy(text);
       return true;
     } catch (error) {
       console.warn("Copy failed", error);
