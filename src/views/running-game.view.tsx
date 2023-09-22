@@ -20,32 +20,16 @@ import {
 } from "../constants";
 import { GameOverText } from "../components/displays/game-over-text";
 import { Chip } from "../components/chip";
+import { InviteP2View } from "./invite-P2.view";
+import {
+  EmptyNameAlert,
+  LongNameAlert,
+  ShortNameAlert,
+} from "../snackbar-alerts";
 
 const StyledDiv = styled("div")({
   marginTop: 30,
 });
-
-const StyledSpinner = styled("img")(({ theme }) => ({
-  animation: "circles@2x infinite 700ms linear",
-  transformBox: "fill-box",
-
-  "@keyframes circles@2x": {
-    from: {
-      transform: "rotate(0deg)",
-    },
-    to: {
-      transform: "rotate(360deg)",
-    },
-  },
-}));
-
-const StyledInviteButton = styled(Button)<ButtonProps>((theme) => ({
-  color: "black",
-  backgroundColor: greenColor,
-  "&:hover": {
-    backgroundColor: darkerGreenColor,
-  },
-}));
 
 const StyledAddP2Button = styled(Button)<ButtonProps>((theme) => ({
   color: "black",
@@ -60,13 +44,24 @@ export default function RunningGameView() {
   const [theGame, isP1] = useRunningGame(gameId!);
   const [player2, setPlayer2] = useState("");
   //  const [newGame, isLoading, createGame] = useNewGame();
+  /*
   const [openAlertEmptyName, setOpenAlertEmptyName] = useState(false);
   const [openAlertShortName, setOpenAlertShortName] = useState(false);
   const [openAlertLongName, setOpenAlertLongName] = useState(false);
-  const [buttonText, setButtonText] = useState("COPY INVITE LINK");
+
+     */
 
   const [, isUpdating, addPlayer] = useAddPlayer(gameId);
 
+  const noAlerts = false;
+
+  const handleClick = useCallback(() => {
+    if (noAlerts) {
+      addPlayer(player2);
+    }
+  }, [addPlayer, player2]);
+
+  /*
   const handleClick = useCallback(() => {
     if (player2 === "") {
       setOpenAlertEmptyName(true);
@@ -92,8 +87,7 @@ export default function RunningGameView() {
     }
   }, [addPlayer, player2]);
 
-  const currentUrl = window.location.href;
-  const copy = useCopyToClipboard();
+ */
 
   if (!theGame) {
     return <p>LOADING</p>;
@@ -106,6 +100,7 @@ export default function RunningGameView() {
   if (theGame.players.length < 2 && !isP1) {
     return (
       <StyledDiv>
+        <p style={{ opacity: 0.5 }}>Created by Nora Disewji</p>
         <Grid container spacing={0}>
           <Grid xs={2}>
             <Chip color="blue" />
@@ -133,85 +128,15 @@ export default function RunningGameView() {
         >
           ADD PLAYER 2
         </StyledAddP2Button>
-        <Snackbar
-          open={openAlertEmptyName}
-          onClose={() => setOpenAlertEmptyName(false)}
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        >
-          <Alert severity="error" sx={{ width: "100%" }}>
-            Player name can't be empty.
-          </Alert>
-        </Snackbar>
-        <Snackbar
-          open={openAlertShortName}
-          onClose={() => setOpenAlertShortName(false)}
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        >
-          <Alert severity="error" sx={{ width: "100%" }}>
-            Player name can't be less than 3 characters.
-          </Alert>
-        </Snackbar>
-        <Snackbar
-          open={openAlertLongName}
-          onClose={() => setOpenAlertShortName(false)}
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        >
-          <Alert severity="error" sx={{ width: "100%" }}>
-            Player name can't be more than 10 characters.
-          </Alert>
-        </Snackbar>
+        <EmptyNameAlert player2={player2} noAlerts={noAlerts} />
+        <ShortNameAlert player2={player2} noAlerts={noAlerts} />
+        <LongNameAlert player2={player2} noAlerts={noAlerts} />
       </StyledDiv>
     );
   }
 
   if (theGame.players.length < 2 && isP1) {
-    return (
-      <StyledDiv>
-        <Grid container spacing={0}>
-          <Grid xs={2}>
-            <Chip color="blue" />
-            <Chip color="green" />
-            <Chip color="orange" />
-            <Chip color="pink" />
-          </Grid>
-          <Grid xs={8}>
-            <Box>
-              <StyledSpinner
-                style={{ width: "20%" }}
-                src={"/circles@2x.png"}
-                sx={{
-                  animation: "spin 8s linear infinite",
-                  "@keyframes spin": {
-                    "0%": {
-                      transform: "rotate(0deg)",
-                    },
-                    "100%": {
-                      transform: "rotate(360deg)",
-                    },
-                  },
-                }}
-              />
-              <h2>WAITING FOR PLAYER 2</h2>
-              <StyledInviteButton
-                variant="contained"
-                onClick={() => {
-                  copy(currentUrl);
-                  setButtonText("LINK COPIED");
-                }}
-              >
-                {buttonText}
-              </StyledInviteButton>
-            </Box>
-          </Grid>
-          <Grid xs={2}>
-            <Chip fill color="blue" />
-            <Chip fill color="green" />
-            <Chip fill color="orange" />
-            <Chip fill color="pink" />
-          </Grid>
-        </Grid>
-      </StyledDiv>
-    );
+    return <InviteP2View />;
   }
 
   if (theGame.state === "GAME_OVER") {

@@ -9,6 +9,11 @@ import { useNewGame } from "../hooks/use-new-game.hook";
 import { styled } from "@mui/material/styles";
 import { darkerPinkColor, pinkColor } from "../constants";
 import { Chip } from "../components/chip";
+import {
+  EmptyNameAlert,
+  LongNameAlert,
+  ShortNameAlert,
+} from "../snackbar-alerts";
 
 const StyledNewGameButton = styled(Button)<ButtonProps>((theme) => ({
   color: "white",
@@ -22,32 +27,38 @@ export default function FrontView() {
   const navigate = useNavigate();
   const [player1, setPlayer1] = useState("");
   const [newGame, isLoading, createGame] = useNewGame();
-  const [openAlertEmptyName, setOpenAlertEmptyName] = React.useState(false);
-  const [openAlertShortName, setOpenAlertShortName] = React.useState(false);
-  const [openAlertLongName, setOpenAlertLongName] = React.useState(false);
+  const noAlerts = false;
 
   const handleClick = () => {
-    if (player1 === "") {
-      setOpenAlertEmptyName(true);
-      setTimeout(() => {
-        setOpenAlertEmptyName(false);
-      }, 3000);
-    }
-    if (player1 !== "" && player1.length < 3) {
-      setOpenAlertShortName(true);
-      setTimeout(() => {
-        setOpenAlertShortName(false);
-      }, 3000);
-    }
-    if (player1 !== "" && player1.length > 10) {
-      setOpenAlertLongName(true);
-      setTimeout(() => {
-        setOpenAlertLongName(false);
-      }, 3000);
-    } else {
+    if (noAlerts) {
       createGame(player1);
     }
   };
+  /*
+    const handleClick = () => {
+      if (player1 === "") {
+        setOpenAlertEmptyName(true);
+        setTimeout(() => {
+          setOpenAlertEmptyName(false);
+        }, 3000);
+      }
+      if (player1 !== "" && player1.length < 3) {
+        setOpenAlertShortName(true);
+        setTimeout(() => {
+          setOpenAlertShortName(false);
+        }, 3000);
+      }
+      if (player1 !== "" && player1.length > 10) {
+        setOpenAlertLongName(true);
+        setTimeout(() => {
+          setOpenAlertLongName(false);
+        }, 3000);
+      } else {
+        createGame(player1);
+      }
+    };
+
+   */
 
   useEffect(() => {
     if (!newGame) return;
@@ -86,33 +97,9 @@ export default function FrontView() {
       >
         CREATE NEW GAME
       </StyledNewGameButton>
-      <Snackbar
-        open={openAlertEmptyName}
-        onClose={() => setOpenAlertEmptyName(false)}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <Alert severity="error" sx={{ width: "100%" }}>
-          Player name can't be empty.
-        </Alert>
-      </Snackbar>
-      <Snackbar
-        open={openAlertShortName}
-        onClose={() => setOpenAlertShortName(false)}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <Alert severity="error" sx={{ width: "100%" }}>
-          Player name can't be less than 3 characters.
-        </Alert>
-      </Snackbar>
-      <Snackbar
-        open={openAlertLongName}
-        onClose={() => setOpenAlertShortName(false)}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <Alert severity="error" sx={{ width: "100%" }}>
-          Player name can't be more than 10 characters.
-        </Alert>
-      </Snackbar>
+      <EmptyNameAlert player1={player1} noAlerts={noAlerts} />
+      <ShortNameAlert player1={player1} noAlerts={noAlerts} />
+      <LongNameAlert player1={player1} noAlerts={noAlerts} />
     </>
   );
 }
