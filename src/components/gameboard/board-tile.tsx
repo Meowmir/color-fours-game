@@ -1,6 +1,5 @@
 import React from "react";
 import { useDrop } from "react-dnd";
-import { Paper } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { styled } from "@mui/material/styles";
 
@@ -14,6 +13,29 @@ export type BoardTileProps = {
   tileIndex: number;
   rowIndex: number;
 };
+
+const StyledDiv = styled("div")`
+  &.placed {
+    animation: blinkingBackground 2s linear;
+  }
+  @keyframes blinkingBackground {
+    0% {
+      background-color: transparent;
+    }
+    25% {
+      background-color: rgba(135, 206, 235, 0.5);
+    }
+    50% {
+      background-color: transparent;
+    }
+    75% {
+      background-color: rgba(135, 206, 235, 0.5);
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+`;
 
 const Dot = styled("div")({
   height: 20,
@@ -59,7 +81,7 @@ export function BoardTile({ game, tile, tileIndex, rowIndex }: BoardTileProps) {
         position: "relative",
       }}
     >
-      <Item ref={drop}>
+      <Item ref={drop} className={tile ? "placed" : undefined}>
         <StyledDot
           style={{
             backgroundColor: tile?.isP1 ? "" : styleColor,
@@ -71,7 +93,7 @@ export function BoardTile({ game, tile, tileIndex, rowIndex }: BoardTileProps) {
   );
 }
 
-const Item = styled(Paper)(({ theme }) => ({
+const Item = styled(StyledDiv)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),

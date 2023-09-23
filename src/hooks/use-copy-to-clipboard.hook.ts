@@ -1,5 +1,6 @@
 import { useCallback } from "react";
-/*
+import copy from "copy-to-clipboard";
+
 export function useCopyToClipboard(): (text: string) => Promise<boolean> {
   return useCallback(async (text) => {
     try {
@@ -11,6 +12,3 @@ export function useCopyToClipboard(): (text: string) => Promise<boolean> {
     }
   }, []);
 }
-
-
- */

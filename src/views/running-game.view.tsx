@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useParams } from "react-router-dom";
 
 import { Button, Box, Snackbar, Alert, ButtonProps } from "@mui/material";
@@ -8,7 +7,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 
 import { useRunningGame } from "../hooks/use-running-game.hook";
 import { useAddPlayer } from "../hooks/use-add-player.hook";
-//import { useCopyToClipboard } from "../hooks/use-copy-to-clipboard.hook";
+import { useCopyToClipboard } from "../hooks/use-copy-to-clipboard.hook";
 
 import { PlayerName } from "../components/input-player-names";
 import { GameTitle, SmallGameTitle } from "../components/displays/game-title";
@@ -94,7 +93,7 @@ export default function RunningGameView() {
   }, [addPlayer, player2]);
 
   const currentUrl = window.location.href;
-  //  const copy = useCopyToClipboard();
+  const copy = useCopyToClipboard();
 
   const [state, setState] = useState({ value: "", copied: false });
 
@@ -195,19 +194,15 @@ export default function RunningGameView() {
                 }}
               />
               <h2>WAITING FOR PLAYER 2</h2>
-              <CopyToClipboard
-                text={currentUrl}
-                onCopy={() => setState({ value: currentUrl, copied: true })}
+              <StyledInviteButton
+                variant="contained"
+                onClick={() => {
+                  setButtonText("LINK COPIED");
+                  copy(window.location.href);
+                }}
               >
-                <StyledInviteButton
-                  variant="contained"
-                  onClick={() => {
-                    setButtonText("LINK COPIED");
-                  }}
-                >
-                  {buttonText}
-                </StyledInviteButton>
-              </CopyToClipboard>
+                {buttonText}
+              </StyledInviteButton>
             </Box>
           </Grid>
           <Grid xs={2}>

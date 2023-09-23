@@ -42,7 +42,6 @@ export function RunningGameBoard({
               spacing={1}
               sx={{
                 margin: 1,
-                background: "black",
                 borderWidth: "1px",
                 borderTop: "solid",
                 borderLeft: "solid",
