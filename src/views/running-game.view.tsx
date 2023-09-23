@@ -95,6 +95,8 @@ export default function RunningGameView() {
   const currentUrl = window.location.href;
   const copy = useCopyToClipboard();
 
+  const [state, setState] = useState({ value: "", copied: false });
+
   if (!theGame) {
     return <p>LOADING</p>;
   }
@@ -195,8 +197,8 @@ export default function RunningGameView() {
               <StyledInviteButton
                 variant="contained"
                 onClick={() => {
-                  copy(currentUrl);
                   setButtonText("LINK COPIED");
+                  copy(window.location.href);
                 }}
               >
                 {buttonText}
