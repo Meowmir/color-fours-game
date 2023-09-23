@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Alert, Button, ButtonProps, Container, Snackbar } from "@mui/material";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 import { GameTitle } from "../components/displays/game-title";
 import { PlayerName } from "../components/input-player-names";
@@ -9,6 +10,7 @@ import { useNewGame } from "../hooks/use-new-game.hook";
 import { styled } from "@mui/material/styles";
 import { darkerPinkColor, pinkColor } from "../constants";
 import { Chip } from "../components/chip";
+import LinksModal from "../components/links-modal";
 
 const StyledNewGameButton = styled(Button)<ButtonProps>((theme) => ({
   color: "white",
@@ -58,6 +60,9 @@ export default function FrontView() {
   return (
     <>
       <p style={{ opacity: 0.5 }}>Created by Nora Disewji</p>
+      <HelpOutlineIcon>
+        <LinksModal />
+      </HelpOutlineIcon>
       <Container style={{ marginTop: 10 }}>
         <Grid container spacing={0}>
           <Grid xs={2}>
