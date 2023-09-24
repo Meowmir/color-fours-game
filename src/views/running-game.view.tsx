@@ -219,7 +219,10 @@ export default function RunningGameView() {
   if (theGame.state === "GAME_OVER") {
     return (
       <StyledDiv>
-        <SmallGameTitle />
+        <a href="http://colorfours.com/" style={{ textDecoration: "none" }}>
+          <SmallGameTitle />
+        </a>
+
         <BoardGrid game={theGame} />
         <GameOverText />
       </StyledDiv>
