@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Alert, Button, ButtonProps, Container, Snackbar } from "@mui/material";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 import { GameTitle } from "../components/displays/game-title";
 import { PlayerName } from "../components/input-player-names";
@@ -59,10 +58,10 @@ export default function FrontView() {
 
   return (
     <>
-      <p style={{ opacity: 0.5 }}>Created by Nora Disewji</p> <LinksModal />
-      <HelpOutlineIcon>
+      <p style={{ opacity: 0.5, paddingBottom: 20 }}>
+        Created by Nora Disewji
         <LinksModal />
-      </HelpOutlineIcon>
+      </p>
       <Container style={{ marginTop: 10 }}>
         <Grid container spacing={0}>
           <Grid xs={2}>
