@@ -59,7 +59,7 @@ export default function FrontView() {
 
   return (
     <>
-      <p style={{ opacity: 0.5 }}>Created by Nora Disewji</p>
+      <p style={{ opacity: 0.5 }}>Created by Nora Disewji</p> <LinksModal />
       <HelpOutlineIcon>
         <LinksModal />
       </HelpOutlineIcon>
