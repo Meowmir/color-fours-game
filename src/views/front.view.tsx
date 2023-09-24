@@ -9,6 +9,7 @@ import { useNewGame } from "../hooks/use-new-game.hook";
 import { styled } from "@mui/material/styles";
 import { darkerPinkColor, pinkColor } from "../constants";
 import { Chip } from "../components/chip";
+import HowToPlayModal from "../components/how-to-play";
 
 const StyledNewGameButton = styled(Button)<ButtonProps>((theme) => ({
   color: "white",
@@ -86,6 +87,7 @@ export default function FrontView() {
       >
         CREATE NEW GAME
       </StyledNewGameButton>
+      <HowToPlayModal />
       <Snackbar
         open={openAlertEmptyName}
         onClose={() => setOpenAlertEmptyName(false)}
