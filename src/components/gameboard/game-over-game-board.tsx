@@ -27,7 +27,7 @@ export function GameOverGameBoard({
     <Box>
       <Container>
         <WinnerDisplay
-          playerName={turn === 1 ? player1Name : player2Name}
+          theGame={theGame}
           backgroundColor={turn === 1 ? "white" : pinkColor}
           borderColor={turn === 1 ? blueColor : pinkColor}
           color={turn === 1 ? "black" : "white"}

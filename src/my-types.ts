@@ -5,6 +5,7 @@ export type Game = {
   gameBoard: (ReadTileDTO | null)[][];
   players: ReadPlayerDTO[];
   isP1?: boolean;
+  winner?: string;
   latestTile?: LatestTileDTO | null;
 };
 
