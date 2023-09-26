@@ -23,7 +23,6 @@ export default function RunningGameView() {
   return (
     <>
       <p style={{ opacity: 0.5, paddingBottom: 20 }}>
-        Created by Nora Disewji
         <LinksModal />
       </p>
       <SmallGameTitle />

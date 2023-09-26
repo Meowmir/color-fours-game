@@ -42,7 +42,6 @@ export function GameOverGameBoard({
               columns={COL_COUNT}
               spacing={1}
               sx={{
-                background: "black",
                 borderWidth: "1px",
                 borderTop: "solid",
                 borderLeft: "solid",

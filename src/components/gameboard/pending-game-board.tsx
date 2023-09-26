@@ -92,7 +92,6 @@ export function PendingGameBoard({
   return (
     <>
       <p style={{ opacity: 0.5, paddingBottom: 20 }}>
-        Created by Nora Disewji
         <LinksModal />
       </p>
       <Grid container spacing={0}>

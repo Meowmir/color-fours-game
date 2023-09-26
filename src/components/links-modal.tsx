@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import { Divider } from "@mui/material";
 
 const style = {
   position: "absolute" as "absolute",
@@ -25,10 +26,10 @@ export default function LinksModal() {
 
   return (
     <>
-      <HelpOutlineIcon
-        onClick={handleOpen}
-        style={{ verticalAlign: "text-top", height: 19 }}
-      />
+      <Typography onClick={handleOpen} style={{ cursor: "pointer" }}>
+        About
+        <HelpOutlineIcon style={{ verticalAlign: "text-top", height: 19 }} />
+      </Typography>
       <Modal
         keepMounted
         open={open}
@@ -37,26 +38,25 @@ export default function LinksModal() {
         aria-describedby="keep-mounted-modal-description"
       >
         <Box sx={style}>
-          <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
-            Find me:
-          </Typography>
-          <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
+          <Typography variant="h6" mb={2}>
+            Created by Nora Disewji:
             <a
               href="https://www.linkedin.com/in/nora-disewji/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              {" "}
-              <LinkedInIcon />
+              <LinkedInIcon style={{ verticalAlign: "text-top" }} />
             </a>
             <a
               href="https://github.com/Meowmir"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <GitHubIcon />
+              <GitHubIcon style={{ verticalAlign: "text-top" }} />
             </a>
           </Typography>
+          <Divider textAlign="center">How to play</Divider>
+          <Typography></Typography>
         </Box>
       </Modal>
     </>
