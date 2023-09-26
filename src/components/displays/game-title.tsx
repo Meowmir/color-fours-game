@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 export function GameTitle() {
   return (
     <>
@@ -20,9 +22,11 @@ export function GameTitle() {
 }
 
 export function SmallGameTitle() {
+  const navigate = useNavigate();
+
   return (
     <>
-      <h2>
+      <h2 style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
         <span style={{ color: "#00D6F2" }}>C</span>
         <span style={{ color: "#90EA00" }}>O</span>
         <span style={{ color: "#FFB100" }}>L</span>

@@ -59,7 +59,6 @@ export default function FrontView() {
   return (
     <>
       <p style={{ opacity: 0.5, paddingBottom: 20 }}>
-        Created by Nora Disewji
         <LinksModal />
       </p>
       <Container style={{ marginTop: 10 }}>

@@ -1,8 +1,6 @@
 import React, { FC } from "react";
-import { useParams } from "react-router-dom";
 
 import { Game } from "../../my-types";
-import { useRunningGame } from "../../hooks/use-running-game.hook";
 import { RunningGameBoard } from "./running-game-board";
 import { GameOverGameBoard } from "./game-over-game-board";
 
@@ -12,20 +10,13 @@ export interface BoardProps {
 }
 
 export const BoardGrid: FC<BoardProps> = ({ game, isP1 }) => {
-  const { gameId } = useParams();
-  const [theGame] = useRunningGame(gameId!);
-
-  if (!theGame) {
-    return <p>"Loading"</p>;
-  }
-
-  const { players, turn } = theGame;
+  const { players, turn } = game;
   const [{ name: player1Name }, { name: player2Name }] = players;
 
-  if (theGame.state !== "GAME_OVER") {
+  if (game.state !== "GAME_OVER") {
     return (
       <RunningGameBoard
-        theGame={theGame}
+        theGame={game}
         player1Name={player1Name}
         player2Name={player2Name}
         turn={turn}
@@ -36,7 +27,7 @@ export const BoardGrid: FC<BoardProps> = ({ game, isP1 }) => {
 
   return (
     <GameOverGameBoard
-      theGame={theGame}
+      theGame={game}
       player1Name={player1Name}
       player2Name={player2Name}
       turn={turn}

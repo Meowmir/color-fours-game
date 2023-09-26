@@ -5,6 +5,8 @@ export type Game = {
   gameBoard: (ReadTileDTO | null)[][];
   players: ReadPlayerDTO[];
   isP1?: boolean;
+  winner?: string;
+  latestTile?: LatestTileDTO | null;
 };
 
 export type PlaceTileDTO = {
@@ -27,4 +29,10 @@ export type ReadPlayerDTO = {
 
 export const ItemType = {
   Chip: "chip",
+};
+
+export type LatestTileDTO = {
+  column: number;
+  row: number;
+  isP1: boolean;
 };

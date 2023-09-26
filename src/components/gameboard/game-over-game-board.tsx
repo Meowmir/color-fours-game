@@ -8,6 +8,7 @@ import { BoardRow } from "./board-row";
 import React from "react";
 import { Game } from "../../my-types";
 import { PlayerArea } from "./player-area";
+import { GameOverText } from "../displays/game-over-text";
 
 export function GameOverGameBoard({
   theGame,
@@ -26,7 +27,7 @@ export function GameOverGameBoard({
     <Box>
       <Container>
         <WinnerDisplay
-          playerName={turn === 1 ? player1Name : player2Name}
+          theGame={theGame}
           backgroundColor={turn === 1 ? "white" : pinkColor}
           borderColor={turn === 1 ? blueColor : pinkColor}
           color={turn === 1 ? "black" : "white"}
@@ -41,7 +42,6 @@ export function GameOverGameBoard({
               columns={COL_COUNT}
               spacing={1}
               sx={{
-                background: "black",
                 borderWidth: "1px",
                 borderTop: "solid",
                 borderLeft: "solid",
@@ -66,6 +66,7 @@ export function GameOverGameBoard({
           </Grid>
         </Grid>
       </Container>
+      <GameOverText />
     </Box>
   );
 }
