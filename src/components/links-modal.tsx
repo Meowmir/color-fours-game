@@ -12,7 +12,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 300,
+  width: 500,
   backgroundColor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -38,7 +38,39 @@ export default function LinksModal() {
         aria-describedby="keep-mounted-modal-description"
       >
         <Box sx={style}>
-          <Typography variant="h6" mb={2}>
+          <Divider textAlign="center" sx={{ mb: 2 }}>
+            How to play
+          </Divider>
+          <Typography>
+            Gameplay:
+            <ul>
+              <li>Each player has their own four colored dots.</li>
+              <li>It's randomized which player gets to go first.</li>
+              <li>Players can choose to place any of the available colors.</li>
+              <li>The placed color will be unavailable next round.</li>
+              <li>
+                When the last available color has been placed, all colors will
+                be available to place again.
+              </li>
+            </ul>
+          </Typography>
+          <Typography>
+            Winning:
+            <ul>
+              <li>
+                First player to get four colors in a row with their dots win.
+              </li>
+              <li>Possible to win diagonally, horizontally and vertically.</li>
+              <li>
+                If no one has placed four in a row when the board is full, it's
+                a draw.
+              </li>
+            </ul>
+          </Typography>
+          <Divider textAlign="center" sx={{ mb: 2 }}>
+            Find me:
+          </Divider>
+          <Typography mb={2}>
             Created by Nora Disewji:
             <a
               href="https://www.linkedin.com/in/nora-disewji/"
@@ -55,8 +87,6 @@ export default function LinksModal() {
               <GitHubIcon style={{ verticalAlign: "text-top" }} />
             </a>
           </Typography>
-          <Divider textAlign="center">How to play</Divider>
-          <Typography></Typography>
         </Box>
       </Modal>
     </>
