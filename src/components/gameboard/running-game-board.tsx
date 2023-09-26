@@ -57,6 +57,7 @@ export function RunningGameBoard({
                   row={row}
                   rowIndex={index}
                   key={index}
+                  latestTile={theGame.latestTile}
                 />
               ))}
             </Grid>

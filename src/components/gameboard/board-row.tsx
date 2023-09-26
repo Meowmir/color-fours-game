@@ -1,4 +1,4 @@
-import { Game, ReadTileDTO } from "../../my-types";
+import { Game, LatestTileDTO, ReadTileDTO } from "../../my-types";
 import { BoardTile } from "./board-tile";
 import React from "react";
 
@@ -6,10 +6,12 @@ export function BoardRow({
   gameId,
   row,
   rowIndex,
+  latestTile,
 }: {
   gameId: Game;
   row: (ReadTileDTO | null)[];
   rowIndex: number;
+  latestTile?: LatestTileDTO | null;
 }) {
   return (
     <>
@@ -17,9 +19,10 @@ export function BoardRow({
         <BoardTile
           game={gameId}
           tile={tile}
-          tileIndex={index}
+          colIndex={index}
           rowIndex={rowIndex}
           key={index}
+          latestTile={latestTile}
         />
       ))}
     </>

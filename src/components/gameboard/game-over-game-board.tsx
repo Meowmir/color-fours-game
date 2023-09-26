@@ -8,6 +8,7 @@ import { BoardRow } from "./board-row";
 import React from "react";
 import { Game } from "../../my-types";
 import { PlayerArea } from "./player-area";
+import { GameOverText } from "../displays/game-over-text";
 
 export function GameOverGameBoard({
   theGame,
@@ -66,6 +67,7 @@ export function GameOverGameBoard({
           </Grid>
         </Grid>
       </Container>
+      <GameOverText />
     </Box>
   );
 }
