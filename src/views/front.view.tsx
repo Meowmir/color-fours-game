@@ -9,6 +9,7 @@ import { useNewGame } from "../hooks/use-new-game.hook";
 import { styled } from "@mui/material/styles";
 import { darkerPinkColor, pinkColor } from "../constants";
 import { Chip } from "../components/chip";
+import LinksModal from "../components/links-modal";
 
 const StyledNewGameButton = styled(Button)<ButtonProps>((theme) => ({
   color: "white",
@@ -57,7 +58,10 @@ export default function FrontView() {
 
   return (
     <>
-      <p style={{ opacity: 0.5 }}>Created by Nora Disewji</p>
+      <p style={{ opacity: 0.5, paddingBottom: 20 }}>
+        Created by Nora Disewji
+        <LinksModal />
+      </p>
       <Container style={{ marginTop: 10 }}>
         <Grid container spacing={0}>
           <Grid xs={2}>

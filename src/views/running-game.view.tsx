@@ -20,10 +20,7 @@ import {
 } from "../constants";
 import { GameOverText } from "../components/displays/game-over-text";
 import { Chip } from "../components/chip";
-
-const StyledDiv = styled("div")({
-  marginTop: 30,
-});
+import LinksModal from "../components/links-modal";
 
 const StyledSpinner = styled("img")(({ theme }) => ({
   animation: "circles@2x infinite 700ms linear",
@@ -107,7 +104,11 @@ export default function RunningGameView() {
 
   if (theGame.players.length < 2 && !isP1) {
     return (
-      <StyledDiv>
+      <>
+        <p style={{ opacity: 0.5, paddingBottom: 20 }}>
+          Created by Nora Disewji
+          <LinksModal />
+        </p>
         <Grid container spacing={0}>
           <Grid xs={2}>
             <Chip color="blue" />
@@ -162,13 +163,17 @@ export default function RunningGameView() {
             Player name can't be more than 10 characters.
           </Alert>
         </Snackbar>
-      </StyledDiv>
+      </>
     );
   }
 
   if (theGame.players.length < 2 && isP1) {
     return (
-      <StyledDiv>
+      <>
+        <p style={{ opacity: 0.5, paddingBottom: 20 }}>
+          Created by Nora Disewji
+          <LinksModal />
+        </p>
         <Grid container spacing={0}>
           <Grid xs={2}>
             <Chip color="blue" />
@@ -212,24 +217,32 @@ export default function RunningGameView() {
             <Chip fill color="pink" />
           </Grid>
         </Grid>
-      </StyledDiv>
+      </>
     );
   }
 
   if (theGame.state === "GAME_OVER") {
     return (
-      <StyledDiv>
+      <>
+        <p style={{ opacity: 0.5, paddingBottom: 20 }}>
+          Created by Nora Disewji
+          <LinksModal />
+        </p>
         <SmallGameTitle />
         <BoardGrid game={theGame} />
         <GameOverText />
-      </StyledDiv>
+      </>
     );
   }
 
   return (
-    <StyledDiv>
+    <>
+      <p style={{ opacity: 0.5 }}>
+        Created by Nora Disewji
+        <LinksModal />
+      </p>
       <SmallGameTitle />
       <BoardGrid game={theGame} isP1={isP1} />
-    </StyledDiv>
+    </>
   );
 }
