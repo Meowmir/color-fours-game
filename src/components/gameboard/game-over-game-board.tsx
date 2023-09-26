@@ -21,12 +21,15 @@ export function GameOverGameBoard({
   turn: number;
 }) {
   const [player1, player2] = theGame.players;
+  const boardIsFull = theGame.gameBoard.every((row) => row.every(Boolean));
 
   return (
     <Box>
       <Container>
         <WinnerDisplay
-          playerName={turn === 1 ? player1Name : player2Name}
+          playerName={
+            boardIsFull ? "No winner" : turn === 1 ? player1Name : player2Name
+          }
           backgroundColor={turn === 1 ? "white" : pinkColor}
           borderColor={turn === 1 ? blueColor : pinkColor}
           color={turn === 1 ? "black" : "white"}
