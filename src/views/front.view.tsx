@@ -10,6 +10,7 @@ import { styled } from "@mui/material/styles";
 import { darkerPinkColor, pinkColor } from "../constants";
 import { Chip } from "../components/chip";
 import LinksModal from "../components/links-modal";
+import { MusicPlayer } from "../components/music-player";
 
 const StyledNewGameButton = styled(Button)<ButtonProps>((theme) => ({
   color: "white",
@@ -22,7 +23,7 @@ const StyledNewGameButton = styled(Button)<ButtonProps>((theme) => ({
 export default function FrontView() {
   const navigate = useNavigate();
   const [player1, setPlayer1] = useState("");
-  const [newGame, isLoading, createGame] = useNewGame();
+  const [newGame, createGame] = useNewGame();
   const [openAlertEmptyName, setOpenAlertEmptyName] = React.useState(false);
   const [openAlertShortName, setOpenAlertShortName] = React.useState(false);
   const [openAlertLongName, setOpenAlertLongName] = React.useState(false);
@@ -46,7 +47,7 @@ export default function FrontView() {
         setOpenAlertLongName(false);
       }, 3000);
     } else {
-      createGame(player1);
+      //createGame(player1);
     }
   };
 
@@ -61,6 +62,7 @@ export default function FrontView() {
       <p style={{ opacity: 0.5, paddingBottom: 20 }}>
         <LinksModal />
       </p>
+      <MusicPlayer />
       <Container style={{ marginTop: 10 }}>
         <Grid container spacing={0}>
           <Grid xs={2}>
