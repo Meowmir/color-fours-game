@@ -23,7 +23,7 @@ export function PlayerArea({
       <PlayerNameDisplay
         playerName={player.name}
         borderColor={isP1 ? blueColor : pinkColor}
-        backgroundColor={isP1 ? undefined : pinkColor}
+        backgroundColor={isP1 ? "rgba(255,255,255, 0.3)" : pinkColor}
         color={isP1 ? undefined : "white"}
       />
       {ALL_TILE_COLORS.map((color) => (

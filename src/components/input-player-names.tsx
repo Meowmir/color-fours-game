@@ -20,6 +20,8 @@ export function PlayerName({ onChange, label, color }: PlayerNameProps) {
       inputProps={{ min: 0, style: { textAlign: "center" } }}
       sx={{
         width: 300,
+        backgroundColor: "rgba(255,255,255, 0.3)",
+        borderRadius: 2,
       }}
       margin="normal"
       id="outlined-basic"

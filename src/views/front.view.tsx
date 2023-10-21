@@ -58,7 +58,14 @@ export default function FrontView() {
 
   return (
     <>
-      <p style={{ opacity: 0.5, paddingBottom: 20 }}>
+      <p
+        style={{
+          opacity: 0.5,
+          paddingBottom: 20,
+          paddingTop: 20,
+          marginTop: "auto",
+        }}
+      >
         <LinksModal />
       </p>
       <Container style={{ marginTop: 10 }}>

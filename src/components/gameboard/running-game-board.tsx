@@ -27,7 +27,7 @@ export function RunningGameBoard({
       <Container>
         <PlayerTurnDisplay
           playerName={turn === 0 ? player1Name : player2Name}
-          backgroundColor={turn === 0 ? "white" : pinkColor}
+          backgroundColor={turn === 0 ? "rgba(255,255,255, 0.3)" : pinkColor}
           borderColor={turn === 0 ? blueColor : pinkColor}
           color={turn === 0 ? "black" : "white"}
         />
