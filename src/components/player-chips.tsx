@@ -25,14 +25,15 @@ export function PlayerChips({
   }));
 
   return (
-    <div
-      ref={drag}
-      style={{
-        opacity: isDragging || !isDraggable ? 0.33 : 1,
-        cursor: isDraggable && isCurrentPlayer ? "move" : "not-allowed",
-      }}
-    >
-      <Chip color={color} fill={fill}></Chip>
-    </div>
+      <div
+        ref={drag}
+        style={{
+          transform: "translate(0, 0)",
+          opacity: isDragging || !isDraggable ? 0.33 : 1,
+          cursor: isDraggable && isCurrentPlayer ? "move" : "not-allowed",
+        }}
+      >
+        <Chip color={color} fill={fill}></Chip>
+      </div>
   );
 }
