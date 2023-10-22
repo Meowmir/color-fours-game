@@ -29,13 +29,6 @@ function App() {
         <BrowserRouter>
           <div
             className="app"
-            style={{
-              backgroundImage: `url(bgd.png)`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-              width: "auto",
-              height: "100vh",
-            }}
           >
             <Routes>
               <Route index element={<FrontView />} />
