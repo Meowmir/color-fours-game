@@ -1,6 +1,6 @@
 import { Box, Container } from "@mui/material";
 import { PlayerTurnDisplay } from "../displays/player-turn-display";
-import { blueColor, pinkColor, COL_COUNT } from "../../constants";
+import {blueColor, pinkColor, COL_COUNT, whiteColorOpacity} from "../../constants";
 import Grid from "@mui/material/Unstable_Grid2";
 import React from "react";
 import { Game } from "../../my-types";
@@ -27,7 +27,7 @@ export function RunningGameBoard({
       <Container>
         <PlayerTurnDisplay
           playerName={turn === 0 ? player1Name : player2Name}
-          backgroundColor={turn === 0 ? "white" : pinkColor}
+          backgroundColor={turn === 0 ? whiteColorOpacity : pinkColor}
           borderColor={turn === 0 ? blueColor : pinkColor}
           color={turn === 0 ? "black" : "white"}
         />

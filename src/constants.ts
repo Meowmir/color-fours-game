@@ -12,6 +12,8 @@ export const pinkColor = "#EA0090";
 
 export const darkerPinkColor = "#cc007e";
 
+export const whiteColorOpacity = "rgba(255,255,255, 0.3)"
+
 // COLUMNS COUNT
 export const COL_COUNT = 12;
 

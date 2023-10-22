@@ -10,13 +10,26 @@ import { gameSocket, SocketContext } from "./game-socket";
 
 import FrontView from "./views/front.view";
 import RunningGameView from "./views/running-game.view";
+import { styled } from "@mui/material/styles";
+
+const BgdImg = styled("img")(({ theme }) => ({
+  backgroundImage: `url(triangles-bgd.png)`,
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+  width: "100%",
+  height: "auto",
+  minHeight: "100%",
+  opacity: 0.3,
+}));
 
 function App() {
   return (
     <DndProvider backend={HTML5Backend}>
       <SocketContext.Provider value={gameSocket}>
         <BrowserRouter>
-          <div className="app">
+          <div
+            className="app"
+          >
             <Routes>
               <Route index element={<FrontView />} />
               <Route

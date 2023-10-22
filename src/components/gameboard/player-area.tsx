@@ -2,7 +2,7 @@ import React from "react";
 
 import { ReadPlayerDTO } from "../../my-types";
 import { PlayerNameDisplay } from "../displays/player-name-display";
-import { ALL_TILE_COLORS, blueColor, pinkColor } from "../../constants";
+import {ALL_TILE_COLORS, blueColor, pinkColor, whiteColorOpacity} from "../../constants";
 import { PlayerChips } from "../player-chips";
 
 export function PlayerArea({
@@ -23,7 +23,7 @@ export function PlayerArea({
       <PlayerNameDisplay
         playerName={player.name}
         borderColor={isP1 ? blueColor : pinkColor}
-        backgroundColor={isP1 ? undefined : pinkColor}
+        backgroundColor={isP1 ? whiteColorOpacity : pinkColor}
         color={isP1 ? undefined : "white"}
       />
       {ALL_TILE_COLORS.map((color) => (
