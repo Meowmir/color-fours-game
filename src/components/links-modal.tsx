@@ -26,7 +26,7 @@ export default function LinksModal() {
 
   return (
     <>
-      <Typography onClick={handleOpen} style={{ cursor: "pointer" }}>
+      <Typography onClick={handleOpen} style={{ cursor: "pointer", paddingTop: 20 }}>
         About
         <HelpOutlineIcon style={{ verticalAlign: "text-top", height: 19 }} />
       </Typography>

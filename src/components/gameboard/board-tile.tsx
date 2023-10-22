@@ -5,7 +5,7 @@ import { styled } from "@mui/material/styles";
 
 import { Game, ItemType, LatestTileDTO, ReadTileDTO } from "../../my-types";
 import { usePlaceTile } from "../../hooks/use-place-tile.hook";
-import { blueColor, greenColor, orangeColor, pinkColor } from "../../constants";
+import {blueColor, greenColor, orangeColor, pinkColor, whiteColorOpacity} from "../../constants";
 
 export type BoardTileProps = {
   game: Game;
@@ -128,7 +128,7 @@ export function BoardTile({
 }
 
 const Item = styled(StyledDiv)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  backgroundColor: theme.palette.mode === "dark" ? whiteColorOpacity : whiteColorOpacity,
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "center",

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Alert, Button, ButtonProps, Container, Snackbar } from "@mui/material";
+import {Alert, Button, ButtonProps, Container, Snackbar, TextFieldProps} from "@mui/material";
 
 import { GameTitle } from "../components/displays/game-title";
 import { PlayerName } from "../components/input-player-names";
@@ -18,6 +18,8 @@ const StyledNewGameButton = styled(Button)<ButtonProps>((theme) => ({
     backgroundColor: darkerPinkColor,
   },
 }));
+
+
 
 export default function FrontView() {
   const navigate = useNavigate();

@@ -13,7 +13,7 @@ export default function RunningGameView() {
   const [theGame, isP1] = useRunningGame(gameId!);
 
   if (!theGame) {
-    return <p>LOADING</p>;
+    return <p style={{ opacity: 0.5, marginTop: "auto", paddingTop: 20 }}>LOADING</p>;
   }
 
   if (theGame.players.length < 2) {
@@ -22,7 +22,7 @@ export default function RunningGameView() {
 
   return (
     <>
-      <p style={{ opacity: 0.5, paddingBottom: 20 }}>
+      <p style={{ opacity: 0.5, marginTop: "auto", paddingTop: 20 }}>
         <LinksModal />
       </p>
       <SmallGameTitle />

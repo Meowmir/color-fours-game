@@ -86,7 +86,7 @@ export function PendingGameBoard({
   const copy = useCopyToClipboard();
 
   if (isUpdating) {
-    return <p>UPDATING</p>;
+    return <p style={{ opacity: 0.5, marginTop: "auto", paddingTop: 20 }}>UPDATING</p>;
   }
 
   return (

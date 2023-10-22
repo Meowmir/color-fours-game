@@ -2,6 +2,7 @@ import React from "react";
 import { useDrag } from "react-dnd";
 import { ItemType } from "../my-types";
 import { Chip } from "./chip";
+import {whiteColorOpacity} from "../constants";
 
 export function PlayerChips({
   color,
